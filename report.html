@@ -18,6 +18,13 @@
     <!-- Styles -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/report.css">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="LOGO/clean india innovators.png">
+    <meta property="og:title" content="Clean India Innovators">
+    <meta property="og:description" content="Solutions for a Sustainable Future">
+    <meta property="og:image" content="http://clean-india-innovators.netlify.app/og-image.png">
+    <meta property="og:url" content="https://clean-india-innovators.netlify.app">
+    <meta property="og:type" content="website">
 </head>
 
 <body>
@@ -82,7 +89,7 @@
                 <form id="report-form">
                     <!-- Upload Section -->
                     <div class="form-section">
-                        <h3>Upload Photo</h3>
+                        <h3>Upload Photo <span style="color:red">*</span></h3>
                         <div class="upload-zone" id="drop-zone">
                             <div class="upload-content" id="upload-placeholder">
                                 <i class="fa-solid fa-cloud-arrow-up upload-icon"></i>
@@ -103,12 +110,26 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Reporter Details (NEW) -->
+                    <div class="form-section">
+                        <h3>Reporter Details</h3>
+                        <div class="form-row">
+                            <div class="form-group col-half">
+                                <label>Full Name <span style="color:red">*</span></label>
+                                <input type="text" id="reporter-name" placeholder="Enter your name" required>
+                            </div>
+                            <div class="form-group col-half">
+                                <label>Phone Number <span style="color:red">*</span></label>
+                                <input type="text" id="reporter-phone" placeholder="Enter your phone number" required>
+                            </div>
+                        </div>
+                    </div>
 
                     <!-- Details Section -->
                     <div class="form-section">
                         <h3>Issue Details</h3>
                         <div class="form-group">
-                            <label>Description of the issue</label>
+                            <label>Description of the issue <span style="color:red">*</span></label>
                             <textarea
                                 placeholder="Describe the waste issue, its location, and any relevant details (e.g., type of waste, how long it's been there)..."
                                 rows="4" required></textarea>
@@ -117,7 +138,7 @@
 
                     <!-- Location Section -->
                     <div class="form-section">
-                        <h3>Exact Location or Landmark</h3>
+                        <h3>Exact Location or Landmark <span style="color:red">*</span></h3>
                         <div class="form-group location-group">
                             <input type="text" id="location-input"
                                 placeholder="e.g. Near EcoPark entrance, Main Street beside library..." required>

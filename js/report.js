@@ -97,8 +97,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const originalText = submitBtn.innerText;
 
         // Validation
-        if (!locationInput.value) {
-            alert("Please provide a location.");
+        const name = document.getElementById('reporter-name').value;
+        const phone = document.getElementById('reporter-phone').value;
+        const hasImage = !previewContainer.classList.contains('hidden');
+
+        if (!name || !phone || !locationInput.value || !hasImage) {
+            alert("Please fill in all required fields:\n- Name\n- Phone\n- Location\n- Photo");
             return;
         }
 
@@ -107,6 +111,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Prepare Data
         const formData = {
+            name: document.getElementById('reporter-name').value,
+            phone: document.getElementById('reporter-phone').value,
             description: reportForm.querySelector('textarea').value,
             location: locationInput.value,
             severity: reportForm.querySelectorAll('select')[0].value,
@@ -115,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
             mimeType: "image/jpeg" // Default
         };
 
-        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyOeX7QFIj601OSMgjfR4IOTnUwRBwE842zTPvOdr9k-eUjGCTtUQI2L7Skz-IvM4Xw/exec";
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzb-APkOcPuBQAp7PBzp5NqE2vawTXTj5Xqf0TX4oDR7GNZ6JT6jIDOEFDZRV6yqdGEEg/exec";
 
         try {
             await fetch(SCRIPT_URL, {
