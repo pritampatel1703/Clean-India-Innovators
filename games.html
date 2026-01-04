@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Games Hub | Clean India Innovators</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/games.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Header (Same as index.html) -->
+    <header>
+        <div class="container nav-wrapper">
+            <!-- Logo -->
+            <a href="index.html" class="logo">
+                <img src="LOGO/logo landscape transparent.png" alt="Clean India Innovators">
+            </a>
+
+            <!-- Mobile Menu Button -->
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+
+            <!-- Navigation -->
+            <nav>
+                <ul class="nav-links">
+                    <li>
+                        <a href="index.html" class="nav-home">
+                            <i class="fa-solid fa-house"></i>
+                            Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="learn.html" class="nav-learn">
+                            <i class="fa-solid fa-book-open"></i>
+                            Learn
+                        </a>
+                    </li>
+                    <li>
+                        <a href="games.html" class="active nav-game">
+                            <i class="fa-solid fa-gamepad"></i>
+                            Games
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="chatbot-trigger nav-chatbot">
+                            <i class="fa-solid fa-robot"></i>
+                            AI Chatbot
+                        </a>
+                    </li>
+                    <li>
+                        <a href="report.html" class="btn-report nav-report">
+                            <i class="fa-solid fa-bullhorn"></i>
+                            Report
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="games-container">
+
+        <!-- Section: Featured Games -->
+        <section class="featured-section">
+            <h2 class="section-title">Featured Games</h2>
+
+            <div class="featured-carousel">
+                <button class="nav-btn prev"><i class="fa-solid fa-chevron-left"></i></button>
+
+                <div class="cards-wrapper">
+
+                    <!-- Card 1: EcoSort AR (Our Main Game) -->
+                    <div class="game-card featured active">
+                        <div class="card-image" style="background-color: #dcfce7;">
+                            <!-- Placeholder for Eco Explorer -->
+                            <h3 style="color: #15803d; font-size: 2rem;">EcoSort AR</h3>
+                        </div>
+                        <div class="card-content">
+                            <h3>EcoSort AR Adventure</h3>
+                            <p>Embark on a journey to discover sustainable practices with Augmented Reality.</p>
+                            <div class="tags">
+                                <span class="tag medium">Medium</span>
+                                <span class="tag age">9-12</span>
+                            </div>
+                            <div class="card-actions">
+                                <a href="ar-game.html" class="btn-play">
+                                    <i class="fa-solid fa-gamepad"></i> Play Now
+                                </a>
+                                <button class="btn-details">Details</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Recycle Rush -->
+                    <div class="game-card featured">
+                        <div class="card-image" style="background-color: #ffe8cc;">
+                            <!-- Placeholder for Recycle Rush Image -->
+                            <h3 style="color: #e85d04; font-size: 2rem;">RUTH</h3>
+                        </div>
+                        <div class="card-content">
+                            <h3>Recycle Rush</h3>
+                            <p>Sort waste quickly and accurately to save the planet!</p>
+                            <div class="tags">
+                                <span class="tag easy">Easy</span>
+                                <span class="tag age">5-8</span>
+                            </div>
+                            <div class="card-actions">
+                                <button class="btn-play">
+                                    <i class="fa-solid fa-gamepad"></i> Play Now
+                                </button>
+                                <button class="btn-details">Details</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Green City Builder -->
+                    <div class="game-card featured">
+                        <div class="card-image" style="background-color: #e0f2fe;">
+                            <!-- Placeholder for City Builder -->
+                            <h3 style="color: #0369a1; font-size: 1.5rem;">City Builder</h3>
+                        </div>
+                        <div class="card-content">
+                            <h3>Green City Builder</h3>
+                            <p>Design and build an environmentally friendly city.</p>
+                            <div class="tags">
+                                <span class="tag hard">Hard</span>
+                                <span class="tag age">13+</span>
+                            </div>
+                            <div class="card-actions">
+                                <button class="btn-play">
+                                    <i class="fa-solid fa-gamepad"></i> Play Now
+                                </button>
+                                <button class="btn-details">Details</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <button class="nav-btn next"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+        </section>
+
+        <!-- Section: All Games Filter -->
+        <section class="all-games-section">
+            <div class="filter-bar">
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Search games...">
+                </div>
+                <div class="dropdowns">
+                    <select class="filter-select">
+                        <option>All Ages</option>
+                        <option>5-8</option>
+                        <option>9-12</option>
+                        <option>13+</option>
+                    </select>
+                    <select class="filter-select">
+                        <option>All Difficulties</option>
+                        <option>Easy</option>
+                        <option>Medium</option>
+                        <option>Hard</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="games-grid">
+                <!-- Grid items (Repeats of above for demo) -->
+
+                <!-- Item 1 -->
+                <div class="grid-card">
+                    <div class="grid-img ps-1"></div>
+                    <div class="grid-info">
+                        <h4>Recycle Rush</h4>
+                        <p>Sort waste quickly!</p>
+                        <div class="tags mini">
+                            <span class="tag easy">Easy</span>
+                        </div>
+                        <div class="grid-actions">
+                            <button class="btn-play sm"><i class="fa-solid fa-gamepad"></i> Play</button>
+                            <button class="btn-details sm">Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="grid-card">
+                    <div class="grid-img ps-2"></div>
+                    <div class="grid-info">
+                        <h4>EcoSort AR</h4>
+                        <p>AR Sorting experience.</p>
+                        <div class="tags mini">
+                            <span class="tag medium">Medium</span>
+                        </div>
+                        <div class="grid-actions">
+                            <a href="ar-game.html" class="btn-play sm"><i class="fa-solid fa-gamepad"></i> Play</a>
+                            <button class="btn-details sm">Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="grid-card">
+                    <div class="grid-img ps-3"></div>
+                    <div class="grid-info">
+                        <h4>Green City</h4>
+                        <p>Build eco-friendly.</p>
+                        <div class="tags mini">
+                            <span class="tag hard">Hard</span>
+                        </div>
+                        <div class="grid-actions">
+                            <button class="btn-play sm"><i class="fa-solid fa-gamepad"></i> Play</button>
+                            <button class="btn-details sm">Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 4 -->
+                <div class="grid-card">
+                    <div class="grid-img ps-4"></div>
+                    <div class="grid-info">
+                        <h4>Water Wise</h4>
+                        <p>Conserve water life.</p>
+                        <div class="tags mini">
+                            <span class="tag medium">Medium</span>
+                        </div>
+                        <div class="grid-actions">
+                            <button class="btn-play sm"><i class="fa-solid fa-gamepad"></i> Play</button>
+                            <button class="btn-details sm">Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 5 -->
+                <div class="grid-card">
+                    <div class="grid-img ps-5"></div>
+                    <div class="grid-info">
+                        <h4>Pollution Patrol</h4>
+                        <p>Clean up areas.</p>
+                        <div class="tags mini">
+                            <span class="tag easy">Easy</span>
+                        </div>
+                        <div class="grid-actions">
+                            <button class="btn-play sm"><i class="fa-solid fa-gamepad"></i> Play</button>
+                            <button class="btn-details sm">Details</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer from index.html (Simplified) -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2026 Clean India Innovators. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>

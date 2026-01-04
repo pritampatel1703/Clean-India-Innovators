@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoSort AR | Clean India Innovators</title>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/ar-game.css">
+
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+
+    <!-- MediaPipe Hands (for Gesture Recognition) -->
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Camera Feed (Background - visible only if WebXR not active/supported or for MediaPipe) -->
+    <video id="input-video" class="input_video" autoplay playsinline muted style="display:none;"></video>
+
+    <!-- UI Overlay container -->
+    <div id="ui-layer">
+
+        <!-- 1. Lobby Screen (Light Theme) -->
+        <div id="lobby-screen" class="screen active mode-light">
+            <!-- Header (Exact copy from index.html) -->
+            <header>
+                <div class="container nav-wrapper">
+                    <a href="index.html" class="logo">
+                        <img src="LOGO/logo landscape transparent.png" alt="Clean India Innovators">
+                    </a>
+
+                    <div class="hamburger">
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                    </div>
+
+                    <nav>
+                        <ul class="nav-links">
+                            <li>
+                                <a href="index.html" class="nav-home">
+                                    <i class="fa-solid fa-house"></i> Home
+                                </a>
+                            </li>
+                            <li>
+                                <a href="learn.html" class="nav-learn">
+                                    <i class="fa-solid fa-book-open"></i> Learn
+                                </a>
+                            </li>
+                            <li>
+                                <a href="games.html" class="active nav-game">
+                                    <i class="fa-solid fa-gamepad"></i> Games
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="chatbot-trigger nav-chatbot">
+                                    <i class="fa-solid fa-robot"></i> AI Chatbot
+                                </a>
+                            </li>
+                            <li>
+                                <a href="report.html" class="btn-report nav-report">
+                                    <i class="fa-solid fa-bullhorn"></i> Report
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </header>
+
+            <!-- Main Content (Styled like Index Hero) -->
+            <!-- Main Content (Styled like Index Hero) -->
+            <main class="container lobby-section">
+                <div class="lobby-text-content">
+                    <span class="lobby-label">Augmented Reality Game</span>
+                    <h1 class="lobby-headline">EcoSort <span class="highlight-green">AR</span></h1>
+                    <p class="lobby-subtext">
+                        Step into a mixed-reality world where your room becomes a playground! Use hand gestures to sort
+                        virtual waste and save the planet.
+                    </p>
+
+                    <div class="lobby-buttons">
+                        <button id="btn-start-ar" class="btn btn-primary btn-hero">
+                            <i class="fa-solid fa-rocket"></i> Start Game
+                        </button>
+                        <button id="btn-tutorial-open" class="btn btn-outline btn-hero">
+                            <i class="fa-solid fa-book-open"></i> Tutorial
+                        </button>
+                    </div>
+                </div>
+
+                <div class="lobby-visual">
+                    <div class="visual-card">
+                        <img src="https://cdni.iconscout.com/illustration/premium/thumb/augmented-reality-8854836-7265963.png"
+                            alt="AR Illustration" class="visual-img">
+                        <div class="visual-badge">
+                            <i class="fa-solid fa-hand-fist"></i>
+                            <span>Gesture Controls Enabled</span>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <!-- Footer (Exact copy from index.html) -->
+            <footer>
+                <div class="container footer-container">
+                    <div class="footer-top">
+                        <!-- Brand & Social -->
+                        <div class="footer-col brand-col">
+                            <div class="footer-logo">
+                                <img src="LOGO/logo landscape transparent.png" alt="Clean India Innovators">
+                            </div>
+                            <p>Empowering the next generation to build a cleaner, greener India through innovation and
+                                action.</p>
+                            <div class="social-links">
+                                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                                <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                                <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+
+                        <!-- Quick Links -->
+                        <div class="footer-col">
+                            <h4>Quick Links</h4>
+                            <ul>
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="learn.html">Learn</a></li>
+                                <li><a href="games.html">Games</a></li>
+                                <li><a href="report.html">Report Issue</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Legal/Resources -->
+                        <div class="footer-col">
+                            <h4>Resources</h4>
+                            <ul>
+                                <li><a href="#">Privacy Policy</a></li>
+                                <li><a href="#">Terms of Service</a></li>
+                                <li><a href="#">Cookie Policy</a></li>
+                                <li><a href="#">Contact Support</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Newsletter -->
+                        <div class="footer-col">
+                            <h4>Stay Updated</h4>
+                            <p>Subscribe to our newsletter for the latest eco-tips and updates.</p>
+                            <form class="newsletter-form">
+                                <input type="email" placeholder="Enter your email">
+                                <button type="button"><i class="fa-solid fa-paper-plane"></i></button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="footer-bottom">
+                        <p>&copy; 2026 Clean India Innovators. All Rights Reserved.</p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+
+        <!-- 2. Tutorial Screen (Dark Modal) -->
+        <div id="tutorial-screen" class="screen hidden mode-dark-overlay">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Gesture Guide</h2>
+                    <button class="close-modal"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+                <div class="modal-body">
+                    <div class="tutorial-grid">
+                        <div class="tutorial-card">
+                            <div class="tutorial-icon"><i class="fa-solid fa-hand-fist"></i></div>
+                            <h4>Grab</h4>
+                            <p>Make a Fist to pick up items.</p>
+                        </div>
+                        <div class="tutorial-card">
+                            <div class="tutorial-icon"><i class="fa-solid fa-hand"></i></div>
+                            <h4>Release</h4>
+                            <p>Open Hand to drop items.</p>
+                        </div>
+                    </div>
+                    <div class="tutorial-footer">
+                        <button id="btn-practice" class="btn btn-primary full-width">
+                            I'm Ready!
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. In-Game HUD (Transparent) -->
+        <div id="game-hud" class="screen hidden mode-transparent">
+            <!-- Top Bar -->
+            <div class="hud-top-bar">
+                <div class="hud-stat">
+                    <span class="hud-label">Score</span>
+                    <span class="hud-value" id="score">0</span>
+                </div>
+                <div class="hud-stat center">
+                    <span class="hud-label">Bin</span>
+                    <span class="hud-value" id="current-bin">None</span>
+                </div>
+                <div class="hud-controls">
+                    <button class="icon-btn" id="btn-exit" title="Back to Menu"><i
+                            class="fa-solid fa-house"></i></button>
+                    <button class="icon-btn" id="btn-pause"><i class="fa-solid fa-pause"></i></button>
+                </div>
+            </div>
+
+            <!-- Hand Status Indicator -->
+            <div class="crosshair-feedback">
+                <div id="hand-status-icon"><i class="fa-solid fa-hand"></i></div>
+                <div id="hand-status-text">Searching for hand...</div>
+            </div>
+
+            <!-- Right Sidebar: Stats -->
+            <div class="hud-sidebar-right">
+                <div class="hud-panel">
+                    <h3>Recycling Goals</h3>
+                    <div class="bin-meter">
+                        <div class="bin-label">Progress</div>
+                        <div class="progress-bar">
+                            <div class="fill green" id="progress-fill" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="toast-message">Find a flat surface and tap to place Bins!</div>
+        </div>
+
+        <!-- 4. Results Screen (Light Theme) -->
+        <div id="results-screen" class="screen hidden mode-light">
+            <div class="results-container">
+                <header class="results-header">
+                    <h2>Game Over!</h2>
+                </header>
+
+                <div class="results-grid">
+                    <div class="result-card score-card">
+                        <h3>Final Score</h3>
+                        <div class="big-score" id="final-score">0</div>
+                    </div>
+
+                    <div class="result-actions">
+                        <button class="btn btn-primary full-width" onclick="location.reload()">
+                            <i class="fa-solid fa-rotate-right"></i> Play Again
+                        </button>
+                        <button class="btn btn-outline full-width" onclick="location.href='games.html'">
+                            <i class="fa-solid fa-arrow-left"></i> Exit to Hub
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- WebXR Logic -->
+    <script type="module" src="js/ar-game.js"></script>
+
+</body>
+
+</html>

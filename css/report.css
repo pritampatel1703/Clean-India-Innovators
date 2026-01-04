@@ -1,0 +1,348 @@
+/* Report Page Specific Styles */
+
+.report-page-bg {
+    background-color: #f8f9fa;
+    padding: 60px 0;
+    min-height: 80vh;
+}
+
+.report-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.report-card {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 50px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+}
+
+.report-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.report-header h1 {
+    font-size: 2.5rem;
+    color: #1e293b;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.report-header p {
+    color: #64748b;
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Form Sections */
+.form-section {
+    margin-bottom: 40px;
+}
+
+.form-section h3 {
+    font-size: 1.3rem;
+    color: #0f172a;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+/* Upload Zone */
+.upload-zone {
+    border: 2px dashed #cbd5e1;
+    border-radius: 12px;
+    padding: 40px;
+    text-align: center;
+    background: #f1f5f9;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.upload-zone:hover,
+.upload-zone.dragover {
+    border-color: #077f5b;
+    background: #eefcf6;
+}
+
+.upload-icon {
+    font-size: 3rem;
+    color: #64748b;
+    margin-bottom: 15px;
+}
+
+.upload-content p {
+    color: #475569;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.upload-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.btn-browse {
+    background: #6ab29d;
+    color: white;
+    padding: 10px 24px;
+    border-radius: 8px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-browse:hover {
+    background: #077f5b;
+}
+
+.btn-capture {
+    background: #ecb37f;
+    color: white;
+    padding: 10px 24px;
+    border-radius: 8px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-capture:hover {
+    background: #df8129;
+}
+
+/* Image Preview */
+.preview-container {
+    position: relative;
+    display: inline-block;
+    max-width: 100%;
+}
+
+.preview-container img {
+    max-height: 300px;
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn-remove-img {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.btn-remove-img:hover {
+    background: rgba(220, 38, 38, 0.9);
+}
+
+/* Form Inputs */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    color: #334155;
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+}
+
+textarea,
+input[type="text"],
+select {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 1rem;
+    color: #1e293b;
+    background: #f8fafc;
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+    /* Ensure padding doesn't overflow */
+}
+
+textarea:focus,
+input[type="text"]:focus,
+select:focus {
+    outline: none;
+    border-color: #077f5b;
+    background: white;
+}
+
+textarea {
+    resize: vertical;
+}
+
+/* Location Group */
+.location-group {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-location {
+    background: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    color: #077f5b;
+    padding: 0 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: all 0.2s;
+}
+
+.btn-location:hover {
+    background: #077f5b;
+    color: white;
+    border-color: #077f5b;
+}
+
+.location-status {
+    font-size: 0.85rem;
+    color: #64748b;
+    margin-top: 5px;
+    margin-left: 2px;
+}
+
+/* Flex Row for Classification */
+.form-row {
+    display: flex;
+    gap: 20px;
+}
+
+.col-half {
+    flex: 1;
+}
+
+/* Submit Button */
+.btn-submit {
+    display: block;
+    width: 100%;
+    padding: 16px;
+    background: #077f5b;
+    /* Accent Color */
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+    margin-top: 30px;
+}
+
+.btn-submit:hover {
+    background: #056649;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(7, 127, 91, 0.2);
+}
+
+/* Success Modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    max-width: 450px;
+    width: 90%;
+    animation: scaleIn 0.3s ease-out;
+}
+
+.success-icon {
+    font-size: 4rem;
+    color: #10b981;
+    margin-bottom: 20px;
+}
+
+.modal-content h2 {
+    color: #1e293b;
+    margin-bottom: 15px;
+}
+
+.modal-content p {
+    color: #64748b;
+    margin-bottom: 30px;
+    line-height: 1.5;
+}
+
+.modal-actions .btn-primary {
+    background: #077f5b;
+    color: white;
+    padding: 12px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+@keyframes scaleIn {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Helpers */
+.hidden {
+    display: none !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .report-card {
+        padding: 30px 20px;
+    }
+
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .upload-buttons {
+        flex-direction: column;
+    }
+
+    .btn-browse,
+    .btn-capture {
+        width: 100%;
+    }
+}

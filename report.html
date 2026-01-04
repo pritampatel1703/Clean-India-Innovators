@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Issue | Clean India Innovators</title>
+
+    <!-- Google Fonts: Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="LOGO/logo circle.png">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/report.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="container nav-wrapper">
+            <!-- Logo -->
+            <a href="index.html" class="logo">
+                <img src="LOGO/logo landscape transparent.png" alt="Clean India Innovators">
+            </a>
+
+            <!-- Mobile Menu Button -->
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+
+            <!-- Navigation -->
+            <nav>
+                <ul class="nav-links">
+                    <li>
+                        <a href="index.html" class="nav-home">
+                            <i class="fa-solid fa-house"></i> Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="learn.html" class="nav-learn">
+                            <i class="fa-solid fa-book-open"></i> Learn
+                        </a>
+                    </li>
+                    <li>
+                        <a href="games.html" class="nav-game">
+                            <i class="fa-solid fa-gamepad"></i> Games
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="chatbot-trigger nav-chatbot">
+                            <i class="fa-regular fa-comments"></i> Chatbot
+                        </a>
+                    </li>
+                    <li>
+                        <a href="report.html" class="active nav-report">
+                            <i class="fa-solid fa-bullhorn"></i> Report
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="report-page-bg">
+        <div class="container report-container">
+            <div class="report-card">
+                <div class="report-header">
+                    <h1>Report a Waste Issue</h1>
+                    <p>Help us keep EcoCity clean by reporting waste and pollution issues. Your contribution makes a big
+                        difference!</p>
+                </div>
+
+                <form id="report-form">
+                    <!-- Upload Section -->
+                    <div class="form-section">
+                        <h3>Upload Photo</h3>
+                        <div class="upload-zone" id="drop-zone">
+                            <div class="upload-content" id="upload-placeholder">
+                                <i class="fa-solid fa-cloud-arrow-up upload-icon"></i>
+                                <p>Drag & drop your waste photo here, or click to browse</p>
+                                <div class="upload-buttons">
+                                    <button type="button" class="btn-browse"
+                                        onclick="document.getElementById('file-input').click()">Browse Files</button>
+                                    <button type="button" class="btn-capture"
+                                        onclick="document.getElementById('camera-input').click()">Capture Photo</button>
+                                </div>
+                                <input type="file" id="file-input" hidden accept="image/*">
+                                <input type="file" id="camera-input" hidden accept="image/*" capture="environment">
+                            </div>
+                            <div class="preview-container hidden" id="preview-container">
+                                <img src="" alt="Preview" id="image-preview">
+                                <button type="button" class="btn-remove-img" id="btn-remove-img"><i
+                                        class="fa-solid fa-times"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Details Section -->
+                    <div class="form-section">
+                        <h3>Issue Details</h3>
+                        <div class="form-group">
+                            <label>Description of the issue</label>
+                            <textarea
+                                placeholder="Describe the waste issue, its location, and any relevant details (e.g., type of waste, how long it's been there)..."
+                                rows="4" required></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Location Section -->
+                    <div class="form-section">
+                        <h3>Exact Location or Landmark</h3>
+                        <div class="form-group location-group">
+                            <input type="text" id="location-input"
+                                placeholder="e.g. Near EcoPark entrance, Main Street beside library..." required>
+                            <button type="button" class="btn-location" id="btn-get-location"
+                                title="Use Current Location">
+                                <i class="fa-solid fa-location-crosshairs"></i>
+                            </button>
+                        </div>
+                        <div class="location-status" id="location-status"></div>
+                    </div>
+
+                    <!-- Classification Section -->
+                    <div class="form-section">
+                        <h3>Classification</h3>
+                        <div class="form-row">
+                            <div class="form-group col-half">
+                                <label>Severity Level</label>
+                                <select>
+                                    <option>Low (Small amounts of litter)</option>
+                                    <option selected>Medium (Moderate litter, some impact)</option>
+                                    <option>High (Large dump, hazardous waste)</option>
+                                    <option>Critical (Immediate health risk)</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-half">
+                                <label>Target Agency</label>
+                                <select>
+                                    <option>Municipal Corporation</option>
+                                    <option>Waste Management Services</option>
+                                    <option>Recycling Partners</option>
+                                    <option>NGOs / Volunteers</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Submit -->
+                    <div class="form-actions">
+                        <button type="submit" class="btn-submit">Submit Report</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-container">
+            <div class="footer-top">
+                <!-- Brand & Social -->
+                <div class="footer-col brand-col">
+                    <div class="footer-logo">
+                        <img src="LOGO/logo landscape transparent.png" alt="Clean India Innovators">
+                    </div>
+                    <p>Empowering the next generation to build a cleaner, greener planet through smart waste management.
+                    </p>
+                    <div class="social-links">
+                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="learn.html">Learn</a></li>
+                        <li><a href="games.html">Games</a></li>
+                        <li><a href="report.html">Report Issue</a></li>
+                    </ul>
+                </div>
+
+                <!-- Legal/Resources -->
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                        <li><a href="#">Contact Support</a></li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div class="footer-col">
+                    <h4>Stay Updated</h4>
+                    <p>Subscribe to our newsletter for the latest eco-tips and updates.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Enter your email">
+                        <button type="button"><i class="fa-solid fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Clean India Innovators. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Success Modal (Hidden by default) -->
+    <div id="success-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="success-icon"><i class="fa-solid fa-circle-check"></i></div>
+            <h2>Report Submitted!</h2>
+            <p>Thank you for being a responsible citizen. We have notified the relevant authorities.</p>
+            <div class="modal-actions">
+                <button id="btn-modal-close" class="btn-primary">Okay, Great!</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/report.js"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>
