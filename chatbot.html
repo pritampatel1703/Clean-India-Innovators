@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Chatbot | Clean India Innovators</title>
+
+    <!-- Google Fonts: Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="LOGO/logo circle.png">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- chatbot.css is injected by js/chatbot.js, but good to link for static page structure -->
+    <link rel="stylesheet" href="css/chatbot.css">
+
+    <style>
+        .chatbot-page-bg {
+            background-color: #f8f9fa;
+            padding: 60px 0;
+            min-height: 80vh;
+        }
+
+        .chatbot-page-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .chatbot-page-header h1 {
+            font-size: 2.5rem;
+            color: #1e293b;
+            margin-bottom: 10px;
+        }
+
+        .chatbot-page-header p {
+            color: #64748b;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="container nav-wrapper">
+            <!-- Logo -->
+            <a href="index.html" class="logo">
+                <img src="LOGO/logo landscape transparent.png" alt="Clean India Innovators">
+            </a>
+
+            <!-- Mobile Menu Button -->
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+
+            <!-- Navigation -->
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html" class="nav-home"><i class="fa-solid fa-house"></i> Home</a></li>
+                    <li><a href="learn.html" class="nav-learn"><i class="fa-solid fa-book-open"></i> Learn</a></li>
+                    <li><a href="games.html" class="nav-game"><i class="fa-solid fa-gamepad"></i> Games</a></li>
+                    <li><a href="chatbot.html" class="active nav-chatbot"><i class="fa-regular fa-comments"></i>
+                            Chatbot</a></li>
+                    <li><a href="report.html" class="nav-report"><i class="fa-solid fa-bullhorn"></i> Report</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="chatbot-page-bg">
+        <div class="container">
+            <div class="chatbot-page-header">
+                <h1>Clean India Bot</h1>
+                <p>Have questions about waste? Ask our intelligent bot!</p>
+            </div>
+
+            <!-- Dedicated Container for Chatbot -->
+            <div id="chatbot-full-page-container"></div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-content">
+                <!-- Brand & Social -->
+                <div class="footer-col brand-col">
+                    <div class="footer-logo">
+                        <img src="LOGO/logo landscape transparent.png" alt="Clean India Innovators">
+                    </div>
+                    <p>Empowering the next generation to build a cleaner, greener India through fun, learning, and
+                        action.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="learn.html">Learn</a></li>
+                        <li><a href="games.html">Games</a></li>
+                        <li><a href="report.html">Report Issue</a></li>
+                    </ul>
+                </div>
+
+                <!-- Legal/Resources -->
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                        <li><a href="#">Contact Support</a></li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div class="footer-col">
+                    <h4>Stay Updated</h4>
+                    <p>Subscribe to our newsletter for the latest eco-tips and updates.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Enter your email">
+                        <button type="button"><i class="fa-solid fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Clean India Innovators. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/chatbot.js"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>
