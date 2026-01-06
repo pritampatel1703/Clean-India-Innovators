@@ -31,7 +31,7 @@ header {
     position: sticky;
     top: 0;
     width: 100%;
-    z-index: 10000;
+    z-index: 1000;
     box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.08);
 
 
@@ -121,24 +121,20 @@ header {
 }
 
 /* Chatbot (Blue) */
-.nav-chatbot:hover,
-.nav-links a.nav-chatbot.active {
+.nav-chatbot:hover {
     color: #1565C0;
 }
 
-.nav-chatbot:hover i,
-.nav-links a.nav-chatbot.active i {
+.nav-chatbot:hover i {
     color: #1565C0;
 }
 
 /* Report (Red) */
-.nav-report:hover,
-.nav-links a.nav-report.active {
+.nav-report:hover {
     color: #C62828;
 }
 
-.nav-report:hover i,
-.nav-links a.nav-report.active i {
+.nav-report:hover i {
     color: #C62828;
 }
 
@@ -288,11 +284,11 @@ header {
     .hero-image {
         padding-right: 180px;
     }
-
+    
     .hero-image img.main-hero-img {
         max-width: 380px;
     }
-
+    
     .hero-image .hero-dustbin {
         width: 130px;
         max-width: 130px;
@@ -306,11 +302,11 @@ header {
     .hero-image {
         padding-right: 150px;
     }
-
+    
     .hero-image img.main-hero-img {
         max-width: 320px;
     }
-
+    
     .hero-image .hero-dustbin {
         width: 110px;
         max-width: 110px;
@@ -325,11 +321,11 @@ header {
     .hero-image {
         padding-right: 120px;
     }
-
+    
     .hero-image img.main-hero-img {
         max-width: 250px;
     }
-
+    
     .hero-image .hero-dustbin {
         width: 90px;
         max-width: 90px;
@@ -344,11 +340,11 @@ header {
     .hero-image {
         padding-right: 100px;
     }
-
+    
     .hero-image img.main-hero-img {
         max-width: 200px;
     }
-
+    
     .hero-image .hero-dustbin {
         width: 75px;
         max-width: 75px;
@@ -960,7 +956,7 @@ header {
     color: #077f5b;
     z-index: 10001;
     opacity: 0;
-    animation: fadeInBounce 1s ease-out 2s forwards, bounce 2s infinite 10s;
+    animation: fadeInBounce 1s ease-out 2s forwards, bounce 2s infinite 3s;
     pointer-events: none;
     margin-top: 10px;
 }
@@ -982,7 +978,6 @@ header {
         opacity: 0;
         transform: translateX(-50%) translateY(10px);
     }
-
     100% {
         opacity: 1;
         transform: translateX(-50%) translateY(0);
@@ -990,12 +985,9 @@ header {
 }
 
 @keyframes bounce {
-
-    0%,
-    100% {
+    0%, 100% {
         transform: translateX(-50%) translateY(0);
     }
-
     50% {
         transform: translateX(-50%) translateY(10px);
     }
@@ -1024,15 +1016,15 @@ header {
     #message-container h2 {
         margin-bottom: 30px;
     }
-
+    
     .scroll-indicator {
         margin-top: 5px;
     }
-
+    
     .scroll-indicator i {
         font-size: 1.2rem;
     }
-
+    
     .scroll-indicator span {
         font-size: 0.7rem;
     }

@@ -35,10 +35,10 @@ document.addEventListener('DOMContentLoaded', () => {
     renderer.setPixelRatio(window.devicePixelRatio);
 
     // Ensure the canvas sits on top
-    renderer.domElement.style.position = 'absolute';
+    renderer.domElement.style.position = 'fixed'; // Fixed to cover screen
     renderer.domElement.style.top = '0';
     renderer.domElement.style.left = '0';
-    renderer.domElement.style.zIndex = '1';
+    renderer.domElement.style.zIndex = '20000';
     container.appendChild(renderer.domElement);
 
     // Lights
@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
             };
         }
     }
-    
+
     // Calculate dustbin position in 3D space based on HTML element position
     function calculateDustbinPosition() {
         const dustbinElement = document.querySelector('.hero-dustbin');
@@ -118,16 +118,16 @@ document.addEventListener('DOMContentLoaded', () => {
             // Fallback to responsive settings if element not found
             return getResponsiveSettings();
         }
-        
+
         // Get the dustbin's position on screen
         const rect = dustbinElement.getBoundingClientRect();
         const centerX = rect.left + rect.width / 2;
         const centerY = rect.top + rect.height / 2;
-        
+
         // Convert screen coordinates to normalized device coordinates (-1 to 1)
         const normalizedX = (centerX / window.innerWidth) * 2 - 1;
         const normalizedY = -(centerY / window.innerHeight) * 2 + 1;
-        
+
         // Convert to 3D world coordinates based on camera
         // Camera is at z=10, so we need to project the point
         const distance = 10;
@@ -136,13 +136,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const fovRad = (fov * Math.PI) / 180;
         const height = 2 * Math.tan(fovRad / 2) * distance;
         const width = height * aspect;
-        
+
         const worldX = (normalizedX * width) / 2;
         const worldY = (normalizedY * height) / 2;
-        
+
         // Get base settings for other values
         const baseSettings = getResponsiveSettings();
-        
+
         return {
             ...baseSettings,
             dustbinX: worldX,
@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let settings = getResponsiveSettings();
     let animationComplete = false; // Track if exit animation is complete
     let hasTriggered = false; // Track if scroll has been triggered
-    
+
     // ===== ANIMATION DURATION SETTINGS =====
     // Change this value to adjust how long the paper takes to reach the dustbin
     const PAPER_THROW_DURATION = 2; // Duration in seconds (e.g., 1, 2, 5, etc.)
@@ -222,7 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
             duration: 0.5,
             ease: "back.out"
         });
-        
+
         // Step 5: Show Scroll Indicator (after message appears)
         const scrollIndicator = document.querySelector('.scroll-indicator');
         if (scrollIndicator) {
@@ -312,7 +312,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 opacity: 0,
                 duration: PAPER_THROW_DURATION,
                 ease: "power2.in",
-                onUpdate: function() {
+                onUpdate: function () {
                     // Animate backdrop-filter blur value
                     const progress = this.progress();
                     const blurValue = 10 * (1 - progress);
@@ -333,15 +333,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // Prevent scrolling on the page from the start
     document.body.style.overflow = 'hidden';
     document.documentElement.style.overflow = 'hidden';
-    
+
     // Detect scroll down gesture - simplified and more responsive
     function handleScrollDown(e) {
         if (hasTriggered || animationComplete) return;
-        
+
         // Prevent default scrolling
         e.preventDefault();
         e.stopPropagation();
-        
+
         // Detect scroll down (positive deltaY means scrolling down)
         // Lower threshold for immediate response
         if (e.deltaY > 30) {
@@ -357,24 +357,24 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         return false;
     }
-    
+
     // Also detect touch scroll for mobile devices
     let touchStartY = 0;
     function handleTouchStart(e) {
         if (hasTriggered || animationComplete) return;
         touchStartY = e.touches[0].clientY;
     }
-    
+
     function handleTouchMove(e) {
         if (hasTriggered || animationComplete) return;
-        
+
         // Prevent default scrolling
         e.preventDefault();
         e.stopPropagation();
-        
+
         const touchEndY = e.touches[0].clientY;
         const deltaY = touchStartY - touchEndY;
-        
+
         // Swipe up (finger moving up on screen - positive deltaY)
         if (deltaY > 30) {
             hasTriggered = true;
@@ -386,14 +386,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         return false;
     }
-    
+
     // Animation complete flag will be set in playExitAnimation's onComplete
-    
+
     // Add event listeners after message appears (wait for animation)
     setTimeout(() => {
         // Add scroll wheel listener (non-passive to prevent scrolling)
         window.addEventListener('wheel', handleScrollDown, { passive: false });
-        
+
         // Add touch listeners for mobile (non-passive to prevent scrolling)
         window.addEventListener('touchstart', handleTouchStart, { passive: false });
         window.addEventListener('touchmove', handleTouchMove, { passive: false });
