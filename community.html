@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Hub | Clean India Innovators</title>
+
+    <!-- Google Fonts: Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="LOGO/logo circle.png">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/community.css">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="LOGO/dp.png">
+    <meta property="og:title" content="Clean India Innovators">
+    <meta property="og:description" content="Solutions for a Sustainable Future">
+    <meta property="og:image" content="http://clean-india-innovators.netlify.app/og-image.png">
+    <meta property="og:url" content="https://clean-india-innovators.netlify.app">
+    <meta property="og:type" content="website">
+</head>
+
+<body>
+
+    <header>
+        <div class="container nav-wrapper">
+            <!-- Logo -->
+            <a href="index.html" class="logo">
+                <img src="LOGO/logo landscape transparent.png" alt="Clean India Innovators">
+            </a>
+
+            <!-- Mobile Menu Button -->
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+
+            <!-- Navigation -->
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html" class="nav-home"><i class="fa-solid fa-house"></i> Home</a></li>
+                    <li><a href="learn.html" class="nav-learn"><i class="fa-solid fa-book-open"></i> Learn</a></li>
+                    <li><a href="games.html" class="nav-game"><i class="fa-solid fa-gamepad"></i> Games</a></li>
+                    <li><a href="community.html" class="active nav-community"><i class="fa-solid fa-users"></i>
+                            Community</a></li>
+                    <li><a href="chatbot.html" class="nav-chatbot"><i class="fa-regular fa-comments"></i> Chatbot</a>
+                    </li>
+                    <li><a href="report.html" class="nav-report"><i class="fa-solid fa-bullhorn"></i> Report</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Header Section -->
+    <section class="community-header">
+        <div class="container">
+            <h1>Join the Green Revolution</h1>
+            <p>Connect with eco-warriors, share your impact, and participate in local drives.</p>
+        </div>
+    </section>
+
+    <!-- Main Content Grid -->
+    <main class="container community-grid">
+
+        <!-- Feed Column -->
+        <div class="feed-section">
+            <h2><i class="fa-solid fa-earth-asia"></i> Community Feed</h2>
+
+            <!-- Create Post -->
+            <div class="post-card">
+                <div class="post-header">
+                    <div class="user-avatar">
+                        <img src="LOGO/member logo.png"
+                            style="border-radius:50%; width:100%; height:100%; object-fit:contain;" alt="You">
+                    </div>
+                    <div class="post-content"
+                        style="margin:0; width:100%; display:flex; flex-direction:column; gap:10px;">
+                        <input type="text" id="username-input" placeholder="Your Name * "
+                            style="width:100%; padding:8px 10px; border:2px solid #f1f5f9; border-radius:50px; outline:none; font-size:0.9rem;">
+                        <input type="text" id="post-input" placeholder="Share your eco-achievement..."
+                            style="width:100%; padding:10px; border:2px solid #f1f5f9; border-radius:50px; outline:none;">
+                    </div>
+                </div>
+                <div style="text-align:right;">
+                    <button class="btn-primary" id="post-btn"
+                        style="padding:8px 20px; font-size:0.9rem; border-radius: 50px;">Post</button>
+                </div>
+            </div>
+
+            <!-- Feed Container -->
+            <div id="feed-container">
+                <!-- Posts will be injected here by JS -->
+            </div>
+
+        </div>
+
+        <!-- Sidebar Column -->
+        <aside>
+            <!-- Events Widget -->
+            <div class="sidebar-card">
+                <h3>Upcoming Events</h3>
+
+                <div class="event-item">
+                    <div class="event-date">
+                        <span class="day">12</span>
+                        <span class="month">JAN</span>
+                    </div>
+                    <div class="event-details">
+                        <h4>City Park Clean-up</h4>
+                        <p>Central Park, 8:00 AM</p>
+                    </div>
+                </div>
+
+                <div class="event-item">
+                    <div class="event-date">
+                        <span class="day">18</span>
+                        <span class="month">JAN</span>
+                    </div>
+                    <div class="event-details">
+                        <h4>E-Waste Collection Drive</h4>
+                        <p>Community Hall, 10:00 AM</p>
+                    </div>
+                </div>
+
+                <a href="#" style="color:#077f5b; font-size:0.9rem; font-weight:600;">View All Events →</a>
+            </div>
+
+            <!-- Leaderboard Widget -->
+            <div class="sidebar-card">
+                <h3>Top Contributors 🏆</h3>
+
+                <div id="leaderboard-list">
+                    <!-- Dynamic Leaderboard loaded via JS -->
+                    <p style="text-align:center; color:#94a3b8; font-size:0.9rem;">Loading...</p>
+                </div>
+            </div>
+        </aside>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-content">
+                <!-- Brand & Social -->
+                <div class="footer-col brand-col">
+                    <div class="footer-logo">
+                        <img src="LOGO/logo landscape transparent.png" alt="Clean India Innovators">
+                    </div>
+                    <p>Empowering the next generation to build a cleaner, greener India through fun, learning, and
+                        action.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="learn.html">Learn</a></li>
+                        <li><a href="games.html">Games</a></li>
+                        <li><a href="community.html">Community</a></li> <!-- Added Community -->
+                        <li><a href="chatbot.html">AI Chatbot</a></li>
+                        <li><a href="report.html">Report Issue</a></li>
+                    </ul>
+                </div>
+
+                <!-- Legal/Resources -->
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                        <li><a href="#">Contact Support</a></li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div class="footer-col">
+                    <h4>Stay Updated</h4>
+                    <p>Subscribe to our newsletter for the latest eco-tips and updates.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Enter your email">
+                        <button type="button"><i class="fa-solid fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Clean India Innovators. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Admin Password Modal -->
+    <div id="admin-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Admin Verification</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Please enter the admin password to proceed.</p>
+                <input type="password" id="admin-password-input" placeholder="Enter Password">
+                <p id="admin-error" class="error-msg"></p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary close-modal-btn" style="border-radius:50px;">Cancel</button>
+                <button class="btn-primary" id="confirm-delete-btn" style="border-radius:50px; padding: 10px;">Delete
+                    Post</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Generic Alert Modal -->
+    <div id="alert-modal" class="modal-overlay hidden">
+        <div class="modal-content" style="max-width: 350px; text-align: center;">
+            <div class="modal-header" style="justify-content: center; position: relative;">
+                <h3 id="alert-title" style="color: #077f5b;">Notice</h3>
+                <button class="close-modal type-alert" style="position: absolute; right: 0;">&times;</button>
+            </div>
+            <div class="modal-body">
+                <i class="fa-solid fa-circle-exclamation"
+                    style="font-size: 3rem; color: #f59e0b; margin-bottom: 15px;"></i>
+                <p id="alert-message" style="font-size: 1.1rem; color: #334155;">Something went wrong.</p>
+            </div>
+            <div class="modal-footer" style="justify-content: center;">
+                <button class="btn-primary close-modal-btn type-alert"
+                    style="border-radius: 50px; padding: 8px 30px;">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script src="js/chatbot.js"></script>
+
+    <!-- Firebase SDK (Compat for simple HTML usage) -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
+
+    <script src="js/community.js"></script>
+    <script src="js/intro_3d.js"></script> <!-- Optional if you want paper effect here too, but maybe not -->
+</body>
+
+</html>

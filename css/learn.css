@@ -1,0 +1,66 @@
+/* Learn Page Specific Styles */
+.learn-hero {
+    background-color: #f0fdf4;
+    padding: 80px 0;
+    text-align: center;
+}
+
+.learn-hero h1 {
+    color: #15803d;
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.learn-grid {
+    padding: 60px 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.learn-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s;
+}
+
+.learn-card:hover {
+    transform: translateY(-5px);
+}
+
+.learn-img {
+    height: 200px;
+    background-color: #e2e8f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #94a3b8;
+    font-size: 3rem;
+}
+
+.learn-content {
+    padding: 25px;
+}
+
+.learn-content h3 {
+    color: #1e293b;
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+}
+
+.learn-content p {
+    color: #64748b;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.btn-learn {
+    color: #077f5b;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}

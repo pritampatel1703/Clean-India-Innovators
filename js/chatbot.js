@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (sender === 'bot') {
             content = `<img src="LOGO/logo circle.png" class="avatar"><div class="bubble">${text}</div>`;
         } else {
-            content = `<div class="bubble">${text}</div>`;
+            content = `<img src="LOGO/member%20logo.png" class="avatar"><div class="bubble">${text}</div>`;
         }
 
         div.innerHTML = content;
@@ -191,56 +191,189 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- GEMINI API INTEGRATION ---
     // 🔴 IMPORTANT: Paste your API Key below!
-    const API_KEY = "AIzaSyD8XnsZHrHCsv6d-o8fL-n2K9TCFvjvJt4";
+    // const API_KEY = "AIzaSyD8XnsZHrHCsv6d-o8fL-n2K9TCFvjvJt4";
 
-    async function callGeminiAPI(userMessage) {
-        if (!API_KEY) {
-            console.warn("Gemini API Key missing. Using local logic.");
-            return null; // Fallback to local
-        }
+    // async function callGeminiAPI(userMessage) {
+    //     if (!API_KEY) {
+    //         console.warn("Gemini API Key missing. Using local logic.");
+    //         return null; // Fallback to local
+    //     }
 
-        const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
+    //     const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
 
-        // Construct System Prompt using our Local Knowledge
-        const systemContext = `
-            You are Clean India Bot, a helpful artificial intelligence assistant for the 'Clean India Innovators' platform.
-            Your goal is to educate users on waste management, recycling, and the 3Rs (Reduce, Reuse, Recycle) in the Indian context.
-            
-            Key Rules/Knowledge:
-            ${JSON.stringify(knowledgeBase)}
-            
-            Instructions:
-            1. Answer the user's question concisely.
-            2. If they ask about bins, strictly follow the Green/Blue/Red colors defined in the knowledge.
-            3. Be polite and encouraging. Use emojis like 🌿, ♻️, 🇮🇳.
-            4. Keep answers short (under 50 words) if possible, appropriate for a chat window.
-        `;
+    //     // Construct System Prompt using our Local Knowledge
+    //     const systemContext = `
+    //         You are Clean India Bot, a helpful artificial intelligence assistant for the 'Clean India Innovators' platform.
+    //         Your goal is to educate users on waste management, recycling, and the 3Rs (Reduce, Reuse, Recycle) in the Indian context.
+
+    //         Key Rules/Knowledge:
+    //         ${JSON.stringify(knowledgeBase)}
+
+    //         Instructions:
+    //         1. Answer the user's question concisely.
+    //         2. If they ask about bins, strictly follow the Green/Blue/Red colors defined in the knowledge.
+    //         3. Be polite and encouraging. Use emojis like 🌿, ♻️, 🇮🇳.
+    //         4. Keep answers short (under 50 words) if possible, appropriate for a chat window.
+    //     `;
+
+    //     try {
+    //         const response = await fetch(API_URL, {
+    //             method: "POST",
+    //             headers: { "Content-Type": "application/json" },
+    //             body: JSON.stringify({
+    //                 contents: [{
+    //                     parts: [
+    //                         { text: systemContext },
+    //                         { text: `User Question: ${userMessage}` }
+    //                     ]
+    //                 }]
+    //             })
+    //         });
+
+    //         const data = await response.json();
+    //         if (data.candidates && data.candidates[0].content) {
+    //             return data.candidates[0].content.parts[0].text;
+    //         } else {
+    //             throw new Error("Invalid API response");
+    //         }
+    //     } catch (error) {
+    //         console.error("Gemini Error:", error);
+    //         return null; // Fallback
+    //     }
+    // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    async function getGeminiResponse(userText) {
+        const API_KEY = "AIzaSyD8XnsZHrHCsv6d-o8fL-n2K9TCFvjvJt4";
+        // This is the special OpenAI-compatible URL for Gemini
+        const API_URL = "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions";
 
         try {
             const response = await fetch(API_URL, {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${API_KEY}`
+                },
                 body: JSON.stringify({
-                    contents: [{
-                        parts: [
-                            { text: systemContext },
-                            { text: `User Question: ${userMessage}` }
-                        ]
-                    }]
+                    model: "gemini-1.5-flash", // or "gemini-1.5-pro"
+                    messages: [
+                        { role: "system", content: "You are a helpful AI assistant." },
+                        { role: "user", content: userText }
+                    ]
                 })
             });
 
             const data = await response.json();
-            if (data.candidates && data.candidates[0].content) {
-                return data.candidates[0].content.parts[0].text;
-            } else {
-                throw new Error("Invalid API response");
-            }
+
+            // Output the result
+            return data.choices[0].message.content;
+
         } catch (error) {
-            console.error("Gemini Error:", error);
-            return null; // Fallback
+            console.error("API Error:", error);
+            return "Failed to get response.";
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     sendBtn.addEventListener('click', async () => {
         const text = input.value.trim();
