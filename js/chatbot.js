@@ -86,7 +86,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function toggleChat() {
         chatWindow.classList.toggle('hidden');
         if (!chatWindow.classList.contains('hidden')) {
-            document.getElementById('chat-input').focus();
+            const chatInput = document.getElementById('chat-input');
+            if (chatInput) chatInput.focus();
         }
     }
 
@@ -112,16 +113,32 @@ document.addEventListener('DOMContentLoaded', () => {
         const div = document.createElement('div');
         div.className = `message ${sender}`;
 
+        let messageHtml = text;
+        if (sender === 'bot' && typeof marked !== 'undefined') {
+            // Parse Markdown
+            messageHtml = marked.parse(text);
+        }
+
         let content = '';
         if (sender === 'bot') {
-            content = `<img src="LOGO/logo circle.png" class="avatar"><div class="bubble">${text}</div>`;
+            content = `<img src="LOGO/logo circle.png" class="avatar"><div class="bubble">${messageHtml}</div>`;
         } else {
             content = `<img src="LOGO/member%20logo.png" class="avatar"><div class="bubble">${text}</div>`;
         }
 
         div.innerHTML = content;
-        messages.insertBefore(div, messages.querySelector('.suggestions')); // Keep tips at bottom or scroll? 
-        // Actually, normally suggestions go away or stay at bottom. For now append to end.
+        messages.insertBefore(div, messages.querySelector('.suggestions'));
+        // Keep suggestions at the bottom, or append if none
+        // messages.appendChild(div); // The original code had appendChild after insertBefore...
+        // Let's stick to simple append for now as the original logic was a bit mixed.
+        // If I look at the file content again:
+        /*
+        123: messages.insertBefore(div, messages.querySelector('.suggestions')); // Keep tips at bottom or scroll? 
+        124:         // Actually, normally suggestions go away or stay at bottom. For now append to end.
+        125:         messages.appendChild(div);
+        */
+        // It seems it was appending to the end in the original code (line 125 overrides 123 if both run? No, insertBefore moves it, appendChild moves it again). 
+        // I will trust the user wants it at the bottom.
         messages.appendChild(div);
         messages.scrollTop = messages.scrollHeight;
     }
@@ -282,31 +299,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-    async function getGeminiResponse(userText) {
-        const API_KEY = "AIzaSyD8XnsZHrHCsv6d-o8fL-n2K9TCFvjvJt4";
+    async function callGeminiAPI(userText) {
+        const API_KEY = "AIzaSyAn7dnVYbsSs_tO58XHiXZ_41z54ciD_BY";
         // This is the special OpenAI-compatible URL for Gemini
-        const API_URL = "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions";
+        const API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent";
 
         try {
             const response = await fetch(API_URL, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": `Bearer ${API_KEY}`
+                    // "Authorization": `Bearer ${API_KEY}`,
+                    "x-goog-api-key": "AIzaSyAn7dnVYbsSs_tO58XHiXZ_41z54ciD_BY"
                 },
                 body: JSON.stringify({
-                    model: "gemini-1.5-flash", // or "gemini-1.5-pro"
-                    messages: [
-                        { role: "system", content: "You are a helpful AI assistant." },
-                        { role: "user", content: userText }
+                    contents: [{ "parts": [{ "text": userText }] }
                     ]
                 })
             });
-
+            console.log("***", response)
             const data = await response.json();
 
+            console.log(data);
             // Output the result
-            return data.choices[0].message.content;
+            return data.candidates[0].content.parts[0].text;
 
         } catch (error) {
             console.error("API Error:", error);
@@ -375,40 +391,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-    sendBtn.addEventListener('click', async () => {
-        const text = input.value.trim();
-        if (text) {
-            addMessage(text, 'user');
-            input.value = '';
-            input.disabled = true; // Prevent double send
+    if (sendBtn && input) {
+        sendBtn.addEventListener('click', async () => {
+            const text = input.value.trim();
+            if (text) {
+                addMessage(text, 'user');
+                input.value = '';
+                input.disabled = true; // Prevent double send
 
-            // Show Typing Indicator (Optional, reusing bot message style)
-            const typingDiv = document.createElement('div');
-            typingDiv.className = 'message bot typing-indicator';
-            typingDiv.innerHTML = `<img src="LOGO/logo circle.png" class="avatar"><div class="bubble">...</div>`;
-            messages.appendChild(typingDiv);
-            messages.scrollTop = messages.scrollHeight;
+                // Show Typing Indicator (Optional, reusing bot message style)
+                const typingDiv = document.createElement('div');
+                typingDiv.className = 'message bot typing-indicator';
+                typingDiv.innerHTML = `<img src="LOGO/logo circle.png" class="avatar"><div class="bubble">...</div>`;
+                messages.appendChild(typingDiv);
+                messages.scrollTop = messages.scrollHeight;
 
-            // Try Gemini First
-            let response = await callGeminiAPI(text);
+                // Try Gemini First
+                let response = await callGeminiAPI(text);
+                console.log(response)
+                // Remove Typing Indicator
+                if (messages.contains(typingDiv)) {
+                    messages.removeChild(typingDiv);
+                }
+                input.disabled = false;
+                input.focus();
 
-            // Remove Typing Indicator
-            messages.removeChild(typingDiv);
-            input.disabled = false;
-            input.focus();
+                // Fallback to Local Knowledge if Gemini failed or no key
+                if (!response) {
+                    response = getBotResponse(text);
+                }
 
-            // Fallback to Local Knowledge if Gemini failed or no key
-            if (!response) {
-                response = getBotResponse(text);
+                addMessage(response, 'bot');
             }
+        });
 
-            addMessage(response, 'bot');
-        }
-    });
-
-    input.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') sendBtn.click();
-    });
+        input.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendBtn.click();
+        });
+    }
 
     // Quick Chips
     document.querySelectorAll('.suggestion-chip').forEach(chip => {

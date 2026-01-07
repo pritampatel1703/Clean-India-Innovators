@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <title>Ollama smollm2 Test</title>
@@ -50,6 +51,7 @@
     }
   </style>
 </head>
+
 <body>
 
   <h2>Ollama smollm2 REST API Test</h2>
@@ -80,7 +82,7 @@
             "Content-Type": "application/json"
           },
           body: JSON.stringify({
-            model: "smollm2",
+            model: "smollm2:360m",
             prompt: prompt,
             stream: true
           })
@@ -112,4 +114,5 @@
   </script>
 
 </body>
+
 </html>
