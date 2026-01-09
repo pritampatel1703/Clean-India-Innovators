@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Clean India Innovators</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="icon" type="image/png" href="LOGO/logo circle.png">
+</head>
+
+<body class="auth-page">
+
+    <a href="index.html" class="back-home"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+
+    <div class="auth-container">
+        <div class="auth-logo">
+            <img src="LOGO/logo circle.png" alt="Logo">
+        </div>
+        <div class="auth-header">
+            <h2>Welcome Back</h2>
+            <p>Login to continue your Clean India journey</p>
+        </div>
+
+        <div id="error-message" class="error-message"></div>
+
+        <form class="auth-form" onsubmit="handleLogin(event)">
+            <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" id="email" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" id="password" placeholder="Enter your password" required>
+                <div style="text-align: right; margin-top: 5px;">
+                    <a href="forgot-password.html" style="font-size: 0.85rem; color: #64748b;">Forgot Password?</a>
+                </div>
+            </div>
+            <button type="submit" class="btn-auth">Login</button>
+        </form>
+
+        <div class="auth-footer">
+            Don't have an account? <a href="signup.html">Sign Up</a>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+</body>
+
+</html>

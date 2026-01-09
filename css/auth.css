@@ -1,0 +1,292 @@
+/* Auth Page Styles */
+body.auth-page {
+    background-color: #f8f9fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.auth-container {
+    background: white;
+    width: 100%;
+    max-width: 450px;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.auth-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background: linear-gradient(90deg, #077f5b, #10b981);
+}
+
+.auth-logo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+.auth-logo img {
+    height: 80px;
+    width: auto;
+}
+
+.auth-header h2 {
+    font-size: 2rem;
+    color: #1e293b;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.auth-header p {
+    color: #64748b;
+    margin-bottom: 30px;
+    font-size: 0.95rem;
+}
+
+.auth-form .form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.auth-form label {
+    display: block;
+    margin-bottom: 8px;
+    color: #475569;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.auth-form input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: all 0.2s;
+    outline: none;
+}
+
+.auth-form input:focus {
+    border-color: #077f5b;
+    box-shadow: 0 0 0 3px rgba(7, 127, 91, 0.1);
+}
+
+.btn-auth {
+    width: 100%;
+    padding: 14px;
+    background: #077f5b;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    margin-top: 10px;
+}
+
+.btn-auth:hover {
+    background: #056649;
+    transform: translateY(-1px);
+}
+
+.auth-footer {
+    margin-top: 25px;
+    font-size: 0.9rem;
+    color: #64748b;
+}
+
+.auth-footer a {
+    color: #077f5b;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.auth-footer a:hover {
+    text-decoration: underline;
+}
+
+.error-message {
+    background: #fee2e2;
+    color: #ef4444;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    display: none;
+    text-align: left;
+}
+
+.error-message i {
+    margin-right: 5px;
+}
+
+/* Back Link */
+.back-home {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: #077f5b;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* --- Aadhar Verification Styles --- */
+.form-divider {
+    display: flex;
+    align-items: center;
+    margin: 25px 0 20px;
+    color: #94a3b8;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.form-divider::before,
+.form-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #e2e8f0;
+}
+
+.form-divider span {
+    padding: 0 15px;
+}
+
+.verify-group {
+    display: flex;
+    gap: 10px;
+    align-items: stretch;
+    /* Ensure equal height */
+}
+
+.verify-group input {
+    flex: 1;
+}
+
+.btn-verify {
+    padding: 0 20px;
+    background: #FF9F43;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+}
+
+.btn-verify:hover {
+    background: #e68a35;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(255, 159, 67, 0.3);
+}
+
+.btn-verify:disabled {
+    background: #cbd5e1;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Modern File Upload */
+.file-upload-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.file-upload-wrapper input[type="file"] {
+    width: 100%;
+    padding: 15px;
+    background: #f8f9fa;
+    border: 2px dashed #cbd5e1;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: #475569;
+}
+
+.file-upload-wrapper input[type="file"]::file-selector-button {
+    margin-right: 15px;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    background-color: #e2e8f0;
+    color: #475569;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.file-upload-wrapper input[type="file"]::file-selector-button:hover {
+    background-color: #cbd5e1;
+    color: #1e293b;
+}
+
+.file-upload-wrapper input[type="file"]:hover {
+    border-color: #077f5b;
+    background: #f0fdf4;
+}
+
+.file-preview {
+    margin-top: 15px;
+    position: relative;
+    display: inline-block;
+    border: 4px solid white;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+}
+
+.file-preview img {
+    max-width: 100%;
+    height: 120px;
+    border-radius: 8px;
+    display: block;
+    object-fit: cover;
+}
+
+.file-preview button {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 28px;
+    height: 28px;
+    background: #ef4444;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s;
+}
+
+.file-preview button:hover {
+    transform: scale(1.1);
+}

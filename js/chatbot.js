@@ -21,7 +21,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     <span>Online, ready to help!</span>
                 </div>
             </div>
-            <button id="close-chat" class="close-chat">&times;</button>
+            <div class="header-controls" style="display: flex; align-items: center; gap: 10px;">
+                <button id="clear-chat" class="close-chat" title="Clear Chat" style="font-size: 1.2rem;"><i class="fa-solid fa-trash"></i></button>
+                <button id="close-chat" class="close-chat">&times;</button>
+            </div>
         </div>
 
         <!-- Messages -->
@@ -50,6 +53,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 <i class="fa-solid fa-paper-plane"></i>
             </button>
         </div>
+
+        <!-- Custom Clear Modal -->
+        <div id="clear-modal" class="chat-modal hidden">
+            <div class="chat-modal-content">
+                <div class="modal-icon"><i class="fa-solid fa-trash-can"></i></div>
+                <h3>Clear History?</h3>
+                <p>This will delete your conversation history. You can't undo this action.</p>
+                <div class="modal-actions">
+                    <button id="btn-cancel-clear" class="btn-cancel">Cancel</button>
+                    <button id="btn-confirm-clear" class="btn-danger">Clear Chat</button>
+                </div>
+            </div>
+        </div>
     `;
 
     if (fullPageContainer) {
@@ -77,10 +93,48 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 3. Logic
+
+    // --- CONFIGURATION & STATE ---
+    const API_PROVIDER = 'gemini'; // Options: 'gemini', 'ollama'
+    const STORAGE_KEY = 'clean_india_chat_history';
+
+    const SYSTEM_PROMPT = `
+    You are Clean India Bot, an expert on waste management, recycling, and the Clean India user's mission.
+    Your goal is to engage users in conversation about cleanliness and the environment.
+
+    INSTRUCTIONS:
+    1. If the user asks about waste, bins, or recycling, answer directly and helpfully.
+    2. If the user asks about ANY unrelated topic (movies, sports, coding, daily life, anything else), DO NOT REFUSE.
+       Instead, creatively BRIDGE the topic back to waste management, recycling, or cleanliness.
+    
+    Examples of Bridging:
+    - User: "Who won the match?"
+      Bot: "I'm focusing on the green game! Speaking of matches, stadiums generate a lot of waste to recycle. 🏟️♻️"
+    - User: "I love pizza."
+      Bot: "Pizza is delicious! 🍕 Remember to put the greasy box in the Green Bin (compost) if it's soiled, or Blue Bin if clean!"
+    - User: "Write a poem."
+      Bot: "Here's a poem: Roses are red, violets are blue, recycle your plastic, and the earth thanks you! 🌍"
+
+    Always keep the tone fun, polite, and educational about Clean India.
+    `;
+
+    // --- CONTEXT STATE ---
+    let chatHistory = [
+        { role: 'user', text: SYSTEM_PROMPT },
+        { role: 'model', text: "Understood. I will answer all questions by connecting them back to cleanliness and recycling." }
+    ]; // For Gemini (Initialized with System Prompt)
+    let ollamaContext = null; // For Ollama
+
     const toggleBtn = document.getElementById('chatbot-toggle');
     const chatWindow = document.getElementById('chatbot-window');
     const closeBtn = document.getElementById('close-chat');
+    const clearBtn = document.getElementById('clear-chat');
     const navTrigger = document.querySelector('.nav-chatbot');
+
+    // Modal Elements
+    const clearModal = document.getElementById('clear-modal');
+    const btnCancelClear = document.getElementById('btn-cancel-clear');
+    const btnConfirmClear = document.getElementById('btn-confirm-clear');
 
     // Toggle Function
     function toggleChat() {
@@ -101,6 +155,26 @@ document.addEventListener('DOMContentLoaded', () => {
         closeBtn.addEventListener('click', () => chatWindow.classList.add('hidden'));
     }
 
+    if (clearBtn) {
+        clearBtn.addEventListener('click', () => {
+            // Show Custom Modal
+            clearModal.classList.remove('hidden');
+        });
+    }
+
+    if (btnCancelClear) {
+        btnCancelClear.addEventListener('click', () => {
+            clearModal.classList.add('hidden');
+        });
+    }
+
+    if (btnConfirmClear) {
+        btnConfirmClear.addEventListener('click', () => {
+            performClearChat();
+            clearModal.classList.add('hidden');
+        });
+    }
+
     // Nav Trigger (only works for floating mode usually, but safety check)
 
 
@@ -109,7 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const input = document.getElementById('chat-input');
     const messages = document.getElementById('chat-messages');
 
-    function addMessage(text, sender) {
+    function addMessage(text, sender, save = true) {
         const div = document.createElement('div');
         div.className = `message ${sender}`;
 
@@ -128,20 +202,83 @@ document.addEventListener('DOMContentLoaded', () => {
 
         div.innerHTML = content;
         messages.insertBefore(div, messages.querySelector('.suggestions'));
-        // Keep suggestions at the bottom, or append if none
-        // messages.appendChild(div); // The original code had appendChild after insertBefore...
-        // Let's stick to simple append for now as the original logic was a bit mixed.
-        // If I look at the file content again:
-        /*
-        123: messages.insertBefore(div, messages.querySelector('.suggestions')); // Keep tips at bottom or scroll? 
-        124:         // Actually, normally suggestions go away or stay at bottom. For now append to end.
-        125:         messages.appendChild(div);
-        */
-        // It seems it was appending to the end in the original code (line 125 overrides 123 if both run? No, insertBefore moves it, appendChild moves it again). 
-        // I will trust the user wants it at the bottom.
         messages.appendChild(div);
         messages.scrollTop = messages.scrollHeight;
+
+        if (save) {
+            saveToStorage(text, sender);
+        }
     }
+
+    // --- PERSISTENCE LOGIC ---
+    function saveToStorage(text, sender) {
+        const nav = localStorage.getItem(STORAGE_KEY);
+        let history = nav ? JSON.parse(nav) : [];
+        history.push({ text, sender });
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(history));
+    }
+
+    function loadChatHistory() {
+        const nav = localStorage.getItem(STORAGE_KEY);
+        if (nav) {
+            const history = JSON.parse(nav);
+            // If history exists, clear default welcome message? 
+            // Better: if history exists, we probably want to clear the default "Hello" to avoid dupes, 
+            // OR we assume the default hello was part of the first session.
+            // Let's clear current messages to be safe and rebuild.
+
+            // However, the template has hardcoded welcome.
+            // Let's remove all .message divs except invalid ones?
+            // Easier: clear chat-messages innerHTML but keep suggestions?
+            // Actually, let's just clear everything and rebuild.
+
+            // Wait, we need the suggestion chips.
+            // Let's remove only .message elements
+            const existingMessages = messages.querySelectorAll('.message');
+            existingMessages.forEach(msg => msg.remove());
+
+            // Re-render
+            history.forEach(msg => {
+                addMessage(msg.text, msg.sender, false); // false = don't save again
+
+                // Rebuild Gemini History
+                chatHistory.push({
+                    role: msg.sender === 'user' ? 'user' : 'model',
+                    text: msg.text
+                });
+            });
+
+            // Scroll to bottom
+            messages.scrollTop = messages.scrollHeight;
+        }
+    }
+
+    function clearChat() {
+        clearModal.classList.remove('hidden');
+    }
+
+    function performClearChat() {
+        if (true) {
+            localStorage.removeItem(STORAGE_KEY);
+            chatHistory = [
+                { role: 'user', text: SYSTEM_PROMPT },
+                { role: 'model', text: "Understood. I will answer all questions by connecting them back to cleanliness and recycling." }
+            ];
+            ollamaContext = null;
+
+            // Reset UI
+            // We can just reload the page or manually reset. Manual is smoother.
+            // Remove messages
+            const existingMessages = messages.querySelectorAll('.message');
+            existingMessages.forEach(msg => msg.remove());
+
+            // Add Default Welcome
+            addMessage("Hello there! I'm Clean India Bot, your friendly waste expert. How can I help you learn about recycling today?", 'bot', true);
+        }
+    }
+
+    // Load on init
+    loadChatHistory();
 
     // --- SMART LOGIC ---
 
@@ -299,34 +436,83 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+
+
     async function callGeminiAPI(userText) {
         const API_KEY = "AIzaSyAn7dnVYbsSs_tO58XHiXZ_41z54ciD_BY";
-        // This is the special OpenAI-compatible URL for Gemini
         const API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent";
 
         try {
+            // Construct the contents array from history
+            const contents = chatHistory.map(msg => ({
+                role: msg.role === 'user' ? 'user' : 'model',
+                parts: [{ text: msg.text }]
+            }));
+
+            // Add the current user message
+            contents.push({
+                role: 'user',
+                parts: [{ text: userText }]
+            });
+
             const response = await fetch(API_URL, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    // "Authorization": `Bearer ${API_KEY}`,
-                    "x-goog-api-key": "AIzaSyAn7dnVYbsSs_tO58XHiXZ_41z54ciD_BY"
+                    "x-goog-api-key": API_KEY
                 },
-                body: JSON.stringify({
-                    contents: [{ "parts": [{ "text": userText }] }
-                    ]
-                })
+                body: JSON.stringify({ contents: contents })
             });
-            console.log("***", response)
-            const data = await response.json();
 
-            console.log(data);
-            // Output the result
-            return data.candidates[0].content.parts[0].text;
+            const data = await response.json();
+            const botResponse = data.candidates[0].content.parts[0].text;
+
+            // Update History on Success
+            chatHistory.push({ role: 'user', text: userText });
+            chatHistory.push({ role: 'model', text: botResponse });
+
+            return botResponse;
 
         } catch (error) {
             console.error("API Error:", error);
             return "Failed to get response.";
+        }
+    }
+
+    async function callOllamaAPI(userText) {
+        const API_URL = "http://localhost:11434/api/generate";
+
+        try {
+            const payload = {
+                model: "smollm2:360m",
+                prompt: userText,
+                stream: false,
+                system: SYSTEM_PROMPT
+            };
+
+            // Add context if available
+            if (ollamaContext) {
+                payload.context = ollamaContext;
+            }
+
+            const response = await fetch(API_URL, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload)
+            });
+
+            const data = await response.json();
+
+            // Save context for next turn
+            if (data.context) {
+                ollamaContext = data.context;
+            }
+
+            return data.response;
+
+        } catch (error) {
+            console.error("Ollama API Error:", error);
+            return null;
         }
     }
 
@@ -406,8 +592,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 messages.appendChild(typingDiv);
                 messages.scrollTop = messages.scrollHeight;
 
-                // Try Gemini First
-                let response = await callGeminiAPI(text);
+                // Select API based on Configuration
+                let response;
+                if (API_PROVIDER === 'ollama') {
+                    response = await callOllamaAPI(text);
+                } else {
+                    response = await callGeminiAPI(text);
+                }
+                // let response = await callGeminiAPI(text);
+                // let response = await callOllamaAPI(text);
+
                 console.log(response)
                 // Remove Typing Indicator
                 if (messages.contains(typingDiv)) {
