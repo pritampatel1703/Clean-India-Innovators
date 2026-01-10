@@ -46,14 +46,30 @@
             <!-- Navigation -->
             <nav>
                 <ul class="nav-links">
-                    <li><a href="index.html" class="nav-home"><i class="fa-solid fa-house"></i> Home</a></li>
-                    <li><a href="learn.html" class="nav-learn"><i class="fa-solid fa-book-open"></i> Learn</a></li>
-                    <li><a href="games.html" class="nav-game"><i class="fa-solid fa-gamepad"></i> Games</a></li>
-                    <li><a href="community.html" class="active nav-community"><i class="fa-solid fa-users"></i>
-                            Community</a></li>
-                    <li><a href="chatbot.html" class="nav-chatbot"><i class="fa-regular fa-comments"></i> Chatbot</a>
+                    <li><a href="index.html" class="nav-home" data-i18n="nav_home"><i class="fa-solid fa-house"></i>
+                            Home</a></li>
+                    <li><a href="learn.html" class="nav-learn" data-i18n="nav_learn"><i
+                                class="fa-solid fa-book-open"></i> Learn</a></li>
+                    <li><a href="games.html" class="nav-game" data-i18n="nav_games"><i class="fa-solid fa-gamepad"></i>
+                            Games</a></li>
+                    <li>
+                        <a href="ngo.html" class="nav-ngo" data-i18n="nav_ngos">
+                            <i class="fa-solid fa-handshake"></i> NGOs
+                        </a>
                     </li>
-                    <li><a href="report.html" class="nav-report"><i class="fa-solid fa-bullhorn"></i> Report</a></li>
+                    <li><a href="chatbot.html" class="nav-chatbot" data-i18n="nav_chatbot"><i
+                                class="fa-regular fa-comments"></i> Chatbot</a>
+                    </li>
+                    <li><a href="report.html" class="nav-report" data-i18n="nav_report"><i
+                                class="fa-solid fa-bullhorn"></i> Report</a></li>
+                    <li>
+                        <select id="lang-selector"
+                            style="padding: 5px; border-radius: 5px; border: 1px solid #ccc; outline: none; font-family: inherit;">
+                            <option value="en">English</option>
+                            <option value="hi">Hindi</option>
+                            <option value="gu">Gujarati</option>
+                        </select>
+                    </li>
                 </ul>
             </nav>
         </div>
@@ -62,9 +78,11 @@
     <!-- Header Section -->
     <section class="community-header">
         <div class="container">
-            <h1>Join the Green Revolution</h1>
-            <p>Connect with eco-warriors, share your impact, and participate in local drives.</p>
-        </div>
+            <div class="container">
+                <h1 data-i18n="comm_hero_title">Join the Green Revolution</h1>
+                <p data-i18n="comm_hero_desc">Connect with eco-warriors, share your impact, and participate in local
+                    drives.</p>
+            </div>
     </section>
 
     <!-- Main Content Grid -->
@@ -72,7 +90,7 @@
 
         <!-- Feed Column -->
         <div class="feed-section">
-            <h2><i class="fa-solid fa-earth-asia"></i> Community Feed</h2>
+            <h2><i class="fa-solid fa-earth-asia"></i> <span data-i18n="comm_feed_title">Community Feed</span></h2>
 
             <!-- Create Post -->
             <div class="post-card">
@@ -83,14 +101,15 @@
                     </div>
                     <div class="post-content"
                         style="margin:0; width:100%; display:flex; flex-direction:column; gap:10px;">
-                        <input type="text" id="username-input" placeholder="Your Name * "
+                        <input type="text" id="username-input" placeholder="Your Name * " data-i18n="comm_input_name"
                             style="width:100%; padding:8px 10px; border:2px solid #f1f5f9; border-radius:50px; outline:none; font-size:0.9rem;">
                         <input type="text" id="post-input" placeholder="Share your eco-achievement..."
+                            data-i18n="comm_input_post"
                             style="width:100%; padding:10px; border:2px solid #f1f5f9; border-radius:50px; outline:none;">
                     </div>
                 </div>
                 <div style="text-align:right;">
-                    <button class="btn-primary" id="post-btn"
+                    <button class="btn-primary" id="post-btn" data-i18n="btn_post"
                         style="padding:8px 20px; font-size:0.9rem; border-radius: 50px;">Post</button>
                 </div>
             </div>
@@ -106,7 +125,7 @@
         <aside>
             <!-- Events Widget -->
             <div class="sidebar-card">
-                <h3>Upcoming Events</h3>
+                <h3 data-i18n="comm_events_title">Upcoming Events</h3>
 
                 <div class="event-item">
                     <div class="event-date">
@@ -135,7 +154,7 @@
 
             <!-- Leaderboard Widget -->
             <div class="sidebar-card">
-                <h3>Top Contributors 🏆</h3>
+                <h3 data-i18n="comm_leaderboard_title">Top Contributors 🏆</h3>
 
                 <div id="leaderboard-list">
                     <!-- Dynamic Leaderboard loaded via JS -->
@@ -246,6 +265,8 @@
     </div>
 
     <script src="js/script.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/lang.js"></script>
     <script src="js/chatbot.js"></script>
 
     <!-- Firebase SDK (Compat for simple HTML usage) -->

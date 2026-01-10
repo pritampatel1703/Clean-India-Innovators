@@ -11,11 +11,48 @@
     margin-bottom: 20px;
 }
 
+/* Toggle Buttons */
+.learn-toggle {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.toggle-btn {
+    padding: 10px 30px;
+    border: 2px solid #077f5b;
+    background: transparent;
+    color: #077f5b;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.toggle-btn.active,
+.toggle-btn:hover {
+    background: #077f5b;
+    color: white;
+}
+
 .learn-grid {
     padding: 60px 0;
+    /* Grid layout moved to individual sections if needed, 
+       but keeping it here applies to the container. 
+       We might need to move this class to the inner sections 
+       if we want them to be grids. */
+}
+
+/* Section visibility */
+#text-section,
+#video-section {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
+    width: 100%;
+    /* Ensure it takes full width */
 }
 
 .learn-card {
@@ -63,4 +100,362 @@
     display: inline-flex;
     align-items: center;
     gap: 5px;
+}
+
+/* =========================================
+   CUSTOM VIDEO PLAYER STYLES
+   ========================================= */
+.video-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s;
+    display: flex;
+    flex-direction: column;
+}
+
+.video-card:hover {
+    transform: translateY(-5px);
+}
+
+.video-container {
+    position: relative;
+    width: 100%;
+    background: #000;
+    aspect-ratio: 16 / 9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.video-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    cursor: pointer;
+}
+
+/* Custom Controls Overlay */
+.custom-controls {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.video-container:hover .custom-controls,
+.video-container.paused .custom-controls {
+    opacity: 1;
+}
+
+/* Buttons */
+.control-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: color 0.2s;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.control-btn:hover {
+    color: #077f5b;
+    /* Brand Green */
+}
+
+/* Progress Bar */
+.progress-container {
+    flex: 1;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.progress-bar {
+    width: 0%;
+    height: 100%;
+    background: #077f5b;
+    border-radius: 5px;
+    position: relative;
+}
+
+.progress-bar::after {
+    content: '';
+    position: absolute;
+    right: -6px;
+    top: 50%;
+    transform: translateY(-50%) scale(0);
+    width: 12px;
+    height: 12px;
+    background: white;
+    border-radius: 50%;
+    transition: transform 0.2s;
+}
+
+.progress-container:hover .progress-bar::after {
+    transform: translateY(-50%) scale(1);
+}
+
+/* Time */
+.video-time {
+    color: white;
+    font-size: 0.85rem;
+    font-family: monospace;
+    min-width: 100px;
+    text-align: center;
+}
+
+/* Play Overlay (Big Center Button) */
+.play-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    background: rgba(7, 127, 91, 0.9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    pointer-events: none;
+    /* Let clicks pass to video */
+    transition: transform 0.2s, opacity 0.2s;
+    box-shadow: 0 0 20px rgba(7, 127, 91, 0.4);
+}
+
+.video-container.playing .play-overlay {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.5);
+}
+
+/* =========================================
+   5R FLIP CARDS
+   ========================================= */
+.flip-section-title {
+    text-align: center;
+    color: #1e293b;
+    margin-bottom: 30px;
+    font-size: 2rem;
+    width: 100%;
+    grid-column: 1 / -1;
+}
+
+.flip-card-grid {
+    display: flex;
+    flex-direction: row;
+    /* EXPLICITLY HORIZONTAL */
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+    /* Generous spacing "make it look nice" */
+    padding: 20px;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto 50px auto;
+    box-sizing: border-box;
+}
+
+.flip-card {
+    /* Fixed base size, effectively ~4 columns on desktop */
+    flex: 0 0 280px;
+    width: 280px;
+
+    background-color: transparent;
+    height: 320px;
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+/* Responsive adjustments */
+@media (max-width: 650px) {
+    .flip-card {
+        flex: 0 0 100%;
+        /* Only stack on truly small screens */
+        max-width: 350px;
+    }
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+}
+
+.flip-card:hover .flip-card-inner,
+.flip-card.flipped .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.flip-card-front {
+    background-color: white;
+    color: #333;
+}
+
+/* Emoji Icon Style */
+.learn-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    line-height: 1;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+/* Topic Specific Backgrounds */
+.fc-def {
+    background: #fee2e2;
+}
+
+/* Red-ish */
+.fc-types {
+    background: #ffedd5;
+}
+
+/* Orange-ish */
+.fc-seg {
+    background: #fef9c3;
+}
+
+/* Yellow-ish */
+.fc-5r {
+    background: #dcfce7;
+}
+
+/* Green-ish */
+.fc-best {
+    background: #dbeafe;
+}
+
+/* Blue-ish */
+.fc-plastic {
+    background: #e0e7ff;
+}
+
+/* Indigo-ish */
+.fc-flower {
+    background: #f3e8ff;
+}
+
+/* Purple-ish */
+.fc-comp {
+    background: #fae8ff;
+}
+
+/* Pink-ish */
+
+.flip-card-front h3 {
+    font-size: 1.5rem;
+    color: #1e293b;
+    padding: 0 10px;
+}
+
+.flip-card-back {
+    background-color: #077f5b;
+    color: white;
+    transform: rotateY(180deg);
+    padding: 25px;
+}
+
+.flip-card-back p {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin: 0;
+    color: white;
+    /* Override default p color */
+}
+
+/* Specific Colors for Front Icons/Backgrounds if needed */
+.fc-refuse i {
+    color: #ef4444;
+}
+
+.fc-reduce i {
+    color: #f59e0b;
+}
+
+.fc-reuse i {
+    color: #3b82f6;
+}
+
+.fc-repurpose i {
+    color: #8b5cf6;
+}
+
+.fc-recycle i {
+    color: #10b981;
+}
+
+.fc-refuse {
+    background: #fee2e2;
+}
+
+.fc-reduce {
+    background: #fef3c7;
+}
+
+.fc-reuse {
+    background: #dbeafe;
+}
+
+.fc-repurpose {
+    background: #ede9fe;
+}
+
+.fc-recycle {
+    background: #d1fae5;
+}
+
+/* Sorting & Composting */
+.fc-sorting i {
+    color: #0369a1;
+}
+
+.fc-sorting {
+    background: #e0f2fe;
+}
+
+.fc-composting i {
+    color: #d97706;
+}
+
+.fc-composting {
+    background: #fef3c7;
 }

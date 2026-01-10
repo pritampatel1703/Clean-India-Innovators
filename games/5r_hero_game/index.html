@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5R Hero Mission</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div id="app-container">
+        <!-- HEADER / HUD -->
+        <header id="game-hud" class="hidden">
+            <div class="hud-item">
+                <span class="icon">⭐</span>
+                <span id="score-display">0</span> Points
+            </div>
+            <div class="hud-center">
+                <span id="level-title">Level 1: Refuse</span>
+            </div>
+            <div class="hud-item">
+                <button id="restart-btn" class="icon-btn" style="margin-right: 10px;">🔄</button>
+                <button id="menu-btn" class="icon-btn">🏠</button>
+            </div>
+        </header>
+
+        <!-- SCREENS -->
+
+        <!-- 1. Start Screen -->
+        <section id="start-screen" class="screen active">
+            <div class="hero-banner">
+                <h1 class="logo">5R <span class="highlight">Hero</span> Mission</h1>
+                <p class="subtitle">Become an Eco-Hero and save the planet!</p>
+            </div>
+            <div class="hero-character-large">🦸</div>
+            <button id="play-btn" class="btn-primary pulse">Start Adventure</button>
+        </section>
+
+        <!-- 2. Level Select (Map) -->
+        <section id="level-select-screen" class="screen hidden">
+            <h2>Select Your Mission</h2>
+            <div class="level-grid">
+                <button class="level-card locked" data-level="1" id="btn-lvl-1">
+                    <span class="lvl-icon">🛑</span>
+                    <span>1. Refuse</span>
+                </button>
+                <button class="level-card locked" data-level="2" id="btn-lvl-2">
+                    <span class="lvl-icon">💧</span>
+                    <span>2. Reduce</span>
+                </button>
+                <button class="level-card locked" data-level="3" id="btn-lvl-3">
+                    <span class="lvl-icon">🛍️</span>
+                    <span>3. Reuse</span>
+                </button>
+                <button class="level-card locked" data-level="4" id="btn-lvl-4">
+                    <span class="lvl-icon">🔧</span>
+                    <span>4. Repair</span>
+                </button>
+                <button class="level-card locked" data-level="5" id="btn-lvl-5">
+                    <span class="lvl-icon">♻️</span>
+                    <span>5. Recycle</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- 3. Gameplay Screen -->
+        <section id="game-screen" class="screen hidden">
+            <div id="game-area">
+                <!-- Dynamic Content Loaded Here via JS -->
+                <div id="level-content"></div>
+            </div>
+
+            <!-- Dialogue / Feedback Area -->
+            <div id="dialogue-box" class="hidden">
+                <div class="mascot">🦸</div>
+                <div class="message-content">
+                    <p id="dialogue-text">Welcome Hero!</p>
+                    <div id="choices-container"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Level Complete -->
+        <section id="level-complete-screen" class="screen hidden">
+            <div class="celebration">🎉</div>
+            <h2>Level Complete!</h2>
+            <p id="level-complete-msg">Great job refusing single-use plastic!</p>
+            <div class="rewards">
+                <span>⭐⭐⭐</span>
+            </div>
+            <div class="btn-group" style="display: flex; gap: 10px; margin-top: 20px;">
+                <button id="back-to-map-btn" class="btn-primary" style="background: #95a5a6;">🗺️ Map</button>
+                <button id="replay-btn" class="btn-primary" style="background: #e67e22;">🔄 Replay</button>
+                <button id="next-level-btn" class="btn-primary">Next Mission ➡️</button>
+            </div>
+        </section>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

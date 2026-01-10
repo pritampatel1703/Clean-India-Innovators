@@ -49,40 +49,49 @@
             <nav>
                 <ul class="nav-links">
                     <li>
-                        <a href="index.html" class="active nav-home">
+                        <a href="index.html" class="active nav-home" data-i18n="nav_home">
                             <i class="fa-solid fa-house"></i>
                             Home
                         </a>
                     </li>
                     <li>
-                        <a href="learn.html" class="nav-learn">
+                        <a href="learn.html" class="nav-learn" data-i18n="nav_learn">
                             <i class="fa-solid fa-book-open"></i>
                             Learn
                         </a>
                     </li>
                     <li>
-                        <a href="games.html" class="nav-game">
+                        <a href="games.html" class="nav-game" data-i18n="nav_games">
                             <i class="fa-solid fa-gamepad"></i>
                             Games
                         </a>
                     </li>
                     <li>
-                        <a href="community.html" class="nav-community">
-                            <i class="fa-solid fa-users"></i>
-                            Community
+                        <a href="ngo.html" class="nav-ngo" data-i18n="nav_ngos">
+                            <i class="fa-solid fa-handshake"></i>
+                            NGOs
                         </a>
                     </li>
+
                     <li>
-                        <a href="chatbot.html" class="nav-chatbot">
+                        <a href="chatbot.html" class="nav-chatbot" data-i18n="nav_chatbot">
                             <i class="fa-regular fa-comments"></i>
                             Chatbot
                         </a>
                     </li>
                     <li>
-                        <a href="report.html" class="nav-report">
+                        <a href="report.html" class="nav-report" data-i18n="nav_report">
                             <i class="fa-solid fa-bullhorn"></i>
                             Report
                         </a>
+                    </li>
+                    <li>
+                        <select id="lang-selector"
+                            style="padding: 5px; border-radius: 5px; border: 1px solid #ccc; outline: none; font-family: inherit;">
+                            <option value="en">English</option>
+                            <option value="hi">Hindi</option>
+                            <option value="gu">Gujarati</option>
+                        </select>
                     </li>
                 </ul>
             </nav>
@@ -93,9 +102,9 @@
     <section class="hero">
         <div class="container hero-content">
             <div class="hero-text">
-                <h1 style="color: #077f5b;">
-                    Clean India Innovators:Solutions<br> for a Sustainable Future</h1>
-                <p style="color: #df8129;">
+                <h1 style="color: #077f5b;" data-i18n="hero_title">
+                    Clean India<br>Innovators:Solutions<br>for a Sustainable<br>Future</h1>
+                <p style="color: #df8129;" data-i18n="hero_desc">
                     Join Clean India Innovators and discover a world where kids learn about waste,
                     play exciting games, chat with an AI helper, and report waste issues to make our
                     communities greener!
@@ -118,8 +127,9 @@
     <section class="features" id="features">
         <div class="container">
             <div class="section-header text-center">
-                <h2 style="color: #df8129;">What Clean India Innovators Offers</h2>
-                <p style="color: #077f5b;">Explore our key features designed to make waste management fun and effective.
+                <h2 style="color: #df8129;" data-i18n="features_title">What Clean India Innovators Offers</h2>
+                <p style="color: #077f5b;" data-i18n="features_desc">Explore our key features designed to make waste
+                    management fun and effective.
                 </p>
             </div>
 
@@ -291,6 +301,7 @@
     <script src="js/intro_3d.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="js/auth.js"></script>
+    <script src="js/lang.js"></script>
     <script src="js/chatbot.js"></script>
 
 </body>

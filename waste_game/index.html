@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoMatch: Waste Sorting Memory Game</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <main class="game-container">
+        <header>
+            <h1>EcoMatch</h1>
+            <p>Match the waste items to learn how to sort them!</p>
+            <div class="stats-bar">
+                <div class="stat">
+                    <span class="stat-label">Moves</span>
+                    <span class="stat-value" id="moves">0</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Matches</span>
+                    <span class="stat-value" id="matches">0 / 8</span>
+                </div>
+            </div>
+        </header>
+
+        <div class="game-grid" id="game-grid">
+            <!-- Cards will be generated here -->
+        </div>
+
+        <div id="message-toast" class="toast hidden">
+            <span id="toast-icon"></span>
+            <div class="toast-content">
+                <h3 id="toast-title">Title</h3>
+                <p id="toast-message">Message</p>
+            </div>
+        </div>
+    </main>
+
+    <div id="game-over-modal" class="modal hidden">
+        <div class="modal-content">
+            <h2>🎉 Clean Sweep! 🎉</h2>
+            <p>You've sorted all the waste correctly!</p>
+            <div class="final-stats">
+                <p>Total Moves: <span id="final-moves">0</span></p>
+            </div>
+            <button id="restart-btn" class="btn-primary">Play Again</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

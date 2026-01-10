@@ -4,22 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Games Hub | Clean India Innovators</title>
+    <title>Eco Crush Saga | Clean India Innovators</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/games.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <link rel="apple-touch-icon" sizes="180x180" href="LOGO/dp.png">
-    <meta property="og:title" content="Clean India Innovators">
-    <meta property="og:description" content="Solutions for a Sustainable Future">
-    <meta property="og:image" content="http://clean-india-innovators.netlify.app/og-image.png">
-    <meta property="og:url" content="https://clean-india-innovators.netlify.app">
-    <meta property="og:type" content="website">
+    <meta property="og:title" content="Eco Crush Saga">
+    <meta property="og:description" content="Match 3 waste items to recycle them!">
 </head>
 
 <body>
 
-    <!-- Header (Same as index.html) -->
+    <!-- Header -->
     <header>
         <div class="container nav-wrapper">
             <!-- Logo -->
@@ -38,251 +38,115 @@
             <nav>
                 <ul class="nav-links">
                     <li>
-                        <a href="index.html" class="nav-home">
-                            <i class="fa-solid fa-house"></i>
-                            Home
+                        <a href="index.html" class="nav-home" data-i18n="nav_home">
+                            <i class="fa-solid fa-house"></i> Home
                         </a>
                     </li>
                     <li>
-                        <a href="learn.html" class="nav-learn">
-                            <i class="fa-solid fa-book-open"></i>
-                            Learn
+                        <a href="learn.html" class="nav-learn" data-i18n="nav_learn">
+                            <i class="fa-solid fa-book-open"></i> Learn
                         </a>
                     </li>
                     <li>
-                        <a href="games.html" class="active nav-game">
-                            <i class="fa-solid fa-gamepad"></i>
-                            Games
+                        <a href="games.html" class="active nav-game" data-i18n="nav_games">
+                            <i class="fa-solid fa-gamepad"></i> Games
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="ngo.html" class="nav-ngo" data-i18n="nav_ngos">
+                            <i class="fa-solid fa-handshake"></i> NGOs
                         </a>
                     </li>
                     <li>
-                        <a href="community.html" class="nav-community">
-                            <i class="fa-solid fa-users"></i>
-                            Community
+                        <a href="chatbot.html" class="nav-chatbot" data-i18n="nav_chatbot">
+                            <i class="fa-solid fa-robot"></i> Chatbot
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="chatbot-trigger nav-chatbot">
-                            <i class="fa-solid fa-robot"></i>
-                            AI Chatbot
+                        <a href="report.html" class="nav-report" data-i18n="nav_report">
+                            <i class="fa-solid fa-bullhorn"></i> Report
                         </a>
                     </li>
                     <li>
-                        <a href="report.html" class="btn-report nav-report">
-                            <i class="fa-solid fa-bullhorn"></i>
-                            Report
-                        </a>
+                        <select id="lang-selector"
+                            style="padding: 5px; border-radius: 5px; border: 1px solid #ccc; outline: none; font-family: inherit;">
+                            <option value="en">English</option>
+                            <option value="hi">Hindi</option>
+                            <option value="gu">Gujarati</option>
+                        </select>
                     </li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <main class="games-container">
+    <!-- Background Blobs -->
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
 
-        <!-- Section: Featured Games -->
-        <section class="featured-section">
-            <h2 class="section-title">Featured Games</h2>
+    <!-- Main Game Container -->
+    <main class="game-container">
+        <header class="game-header-inner">
+            <h1>Eco Arcade</h1>
+            <p>Play, Learn, and Save the Planet! Choose a game to start your journey.</p>
+        </header>
 
-            <div class="featured-carousel">
-                <button class="nav-btn prev"><i class="fa-solid fa-chevron-left"></i></button>
-
-                <div class="cards-wrapper">
-
-                    <!-- Card 1: EcoSort AR (Our Main Game) -->
-                    <div class="game-card featured active">
-                        <div class="card-image" style="background-color: #dcfce7;">
-                            <!-- Placeholder for Eco Explorer -->
-                            <h3 style="color: #15803d; font-size: 2rem;">EcoSort AR</h3>
-                        </div>
-                        <div class="card-content">
-                            <h3>EcoSort AR Adventure</h3>
-                            <p>Embark on a journey to discover sustainable practices with Augmented Reality.</p>
-                            <div class="tags">
-                                <span class="tag medium">Medium</span>
-                                <span class="tag age">9-12</span>
-                            </div>
-                            <div class="card-actions">
-                                <a href="ar-game.html" class="btn-play">
-                                    <i class="fa-solid fa-gamepad"></i> Play Now
-                                </a>
-                                <button class="btn-details">Details</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Card 2: Recycle Rush -->
-                    <div class="game-card featured">
-                        <div class="card-image" style="background-color: #ffe8cc;">
-                            <!-- Placeholder for Recycle Rush Image -->
-                            <h3 style="color: #e85d04; font-size: 2rem;">RUTH</h3>
-                        </div>
-                        <div class="card-content">
-                            <h3>Recycle Rush</h3>
-                            <p>Sort waste quickly and accurately to save the planet!</p>
-                            <div class="tags">
-                                <span class="tag easy">Easy</span>
-                                <span class="tag age">5-8</span>
-                            </div>
-                            <div class="card-actions">
-                                <button class="btn-play">
-                                    <i class="fa-solid fa-gamepad"></i> Play Now
-                                </button>
-                                <button class="btn-details">Details</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Card 3: Green City Builder -->
-                    <div class="game-card featured">
-                        <div class="card-image" style="background-color: #e0f2fe;">
-                            <!-- Placeholder for City Builder -->
-                            <h3 style="color: #0369a1; font-size: 1.5rem;">City Builder</h3>
-                        </div>
-                        <div class="card-content">
-                            <h3>Green City Builder</h3>
-                            <p>Design and build an environmentally friendly city.</p>
-                            <div class="tags">
-                                <span class="tag hard">Hard</span>
-                                <span class="tag age">13+</span>
-                            </div>
-                            <div class="card-actions">
-                                <button class="btn-play">
-                                    <i class="fa-solid fa-gamepad"></i> Play Now
-                                </button>
-                                <button class="btn-details">Details</button>
-                            </div>
-                        </div>
-                    </div>
-
+        <div class="game-hub-grid">
+            <!-- 1. Eco Crush -->
+            <a href="games/eco_crush/index.html" class="game-card gc-eco" target="_blank">
+                <div class="game-icon">
+                    🍭
                 </div>
+                <h3>Eco Crush</h3>
+                <p>Match waste items to clear the grid! A fun twist on the classic matching game.</p>
+                <span class="btn-play">Play Now</span>
+            </a>
 
-                <button class="nav-btn next"><i class="fa-solid fa-chevron-right"></i></button>
-            </div>
-        </section>
-
-        <!-- Section: All Games Filter -->
-        <section class="all-games-section">
-            <div class="filter-bar">
-                <div class="search-box">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                    <input type="text" placeholder="Search games...">
+            <!-- 2. Compost Builder -->
+            <a href="games/compost_builder/index.html" class="game-card gc-compost" target="_blank">
+                <div class="game-icon">
+                    🐛
                 </div>
-                <div class="dropdowns">
-                    <select class="filter-select">
-                        <option>All Ages</option>
-                        <option>5-8</option>
-                        <option>9-12</option>
-                        <option>13+</option>
-                    </select>
-                    <select class="filter-select">
-                        <option>All Difficulties</option>
-                        <option>Easy</option>
-                        <option>Medium</option>
-                        <option>Hard</option>
-                    </select>
+                <h3>Compost Builder</h3>
+                <p>Learn the art of composting by layering greens and browns correctly.</p>
+                <span class="btn-play">Play Now</span>
+            </a>
+
+            <!-- 3. 5R Hero -->
+            <a href="games/5r_hero_game/index.html" class="game-card gc-5r" target="_blank">
+                <div class="game-icon">
+                    🦸
                 </div>
-            </div>
+                <h3>5R Hero</h3>
+                <p>Master the 5 R's: Refuse, Reduce, Reuse, Repurpose, Recycle.</p>
+                <span class="btn-play">Play Now</span>
+            </a>
 
-            <div class="games-grid">
-                <!-- Grid items (Repeats of above for demo) -->
-
-                <!-- Item 1 -->
-                <div class="grid-card">
-                    <div class="grid-img ps-1"></div>
-                    <div class="grid-info">
-                        <h4>Recycle Rush</h4>
-                        <p>Sort waste quickly!</p>
-                        <div class="tags mini">
-                            <span class="tag easy">Easy</span>
-                        </div>
-                        <div class="grid-actions">
-                            <button class="btn-play sm"><i class="fa-solid fa-gamepad"></i> Play</button>
-                            <button class="btn-details sm">Details</button>
-                        </div>
-                    </div>
+            <!-- 4. Waste Game -->
+            <a href="games/waste_game/index.html" class="game-card gc-waste" target="_blank">
+                <div class="game-icon">
+                    ♻️
                 </div>
-
-                <!-- Item 2 -->
-                <div class="grid-card">
-                    <div class="grid-img ps-2"></div>
-                    <div class="grid-info">
-                        <h4>EcoSort AR</h4>
-                        <p>AR Sorting experience.</p>
-                        <div class="tags mini">
-                            <span class="tag medium">Medium</span>
-                        </div>
-                        <div class="grid-actions">
-                            <a href="ar-game.html" class="btn-play sm"><i class="fa-solid fa-gamepad"></i> Play</a>
-                            <button class="btn-details sm">Details</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Item 3 -->
-                <div class="grid-card">
-                    <div class="grid-img ps-3"></div>
-                    <div class="grid-info">
-                        <h4>Green City</h4>
-                        <p>Build eco-friendly.</p>
-                        <div class="tags mini">
-                            <span class="tag hard">Hard</span>
-                        </div>
-                        <div class="grid-actions">
-                            <button class="btn-play sm"><i class="fa-solid fa-gamepad"></i> Play</button>
-                            <button class="btn-details sm">Details</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Item 4 -->
-                <div class="grid-card">
-                    <div class="grid-img ps-4"></div>
-                    <div class="grid-info">
-                        <h4>Water Wise</h4>
-                        <p>Conserve water life.</p>
-                        <div class="tags mini">
-                            <span class="tag medium">Medium</span>
-                        </div>
-                        <div class="grid-actions">
-                            <button class="btn-play sm"><i class="fa-solid fa-gamepad"></i> Play</button>
-                            <button class="btn-details sm">Details</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Item 5 -->
-                <div class="grid-card">
-                    <div class="grid-img ps-5"></div>
-                    <div class="grid-info">
-                        <h4>Pollution Patrol</h4>
-                        <p>Clean up areas.</p>
-                        <div class="tags mini">
-                            <span class="tag easy">Easy</span>
-                        </div>
-                        <div class="grid-actions">
-                            <button class="btn-play sm"><i class="fa-solid fa-gamepad"></i> Play</button>
-                            <button class="btn-details sm">Details</button>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
+                <h3>Waste Sorter</h3>
+                <p>Test your knowledge! Sort waste items into the correct colored bins.</p>
+                <span class="btn-play">Play Now</span>
+            </a>
+        </div>
     </main>
 
-    <!-- Footer from index.html (Simplified) -->
+    <!-- Footer -->
     <footer class="footer">
         <div class="container footer-container">
             <div class="footer-content">
-                <!-- Brand & Social -->
                 <div class="footer-col brand-col">
                     <div class="footer-logo">
                         <img src="LOGO/logo landscape transparent.png" alt="Clean India Innovators">
                     </div>
-                    <p>Empowering the next generation to build a cleaner, greener India through fun, learning, and
-                        action.</p>
+                    <p>Empowering the next generation to build a cleaner, greener India.</p>
                     <div class="social-links">
                         <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
                         <a href="#"><i class="fa-brands fa-twitter"></i></a>
@@ -291,20 +155,18 @@
                     </div>
                 </div>
 
-                <!-- Quick Links -->
                 <div class="footer-col">
                     <h4>Quick Links</h4>
                     <ul>
                         <li><a href="index.html">Home</a></li>
                         <li><a href="learn.html">Learn</a></li>
                         <li><a href="games.html">Games</a></li>
-                        <li><a href="community.html">Community</a></li>
+                        <li><a href="ngo.html">NGOs</a></li>
                         <li><a href="chatbot.html">AI Chatbot</a></li>
                         <li><a href="report.html">Report Issue</a></li>
                     </ul>
                 </div>
 
-                <!-- Legal/Resources -->
                 <div class="footer-col">
                     <h4>Resources</h4>
                     <ul>
@@ -315,10 +177,9 @@
                     </ul>
                 </div>
 
-                <!-- Newsletter -->
                 <div class="footer-col">
                     <h4>Stay Updated</h4>
-                    <p>Subscribe to our newsletter for the latest eco-tips and updates.</p>
+                    <p>Subscribe for eco-tips.</p>
                     <form class="newsletter-form">
                         <input type="email" placeholder="Enter your email">
                         <button type="button"><i class="fa-solid fa-paper-plane"></i></button>
@@ -332,7 +193,8 @@
         </div>
     </footer>
 
-    <script src="js/script.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/lang.js"></script>
 </body>
 
 </html>

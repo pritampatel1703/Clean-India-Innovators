@@ -46,37 +46,46 @@
             <!-- Navigation -->
             <nav>
                 <ul class="nav-links">
-                    <li>
-                        <a href="index.html" class="nav-home">
-                            <i class="fa-solid fa-house"></i> Home
-                        </a>
-                    </li>
-                    <li>
-                        <a href="learn.html" class="nav-learn">
-                            <i class="fa-solid fa-book-open"></i> Learn
-                        </a>
-                    </li>
-                    <li>
-                        <a href="games.html" class="nav-game">
-                            <i class="fa-solid fa-gamepad"></i> Games
-                        </a>
-                    </li>
-                    <li>
-                        <a href="community.html" class="nav-community">
-                            <i class="fa-solid fa-users"></i>
-                            Community
-                        </a>
-                    </li>
-                    <li>
-                        <a href="chatbot.html" class="nav-chatbot">
-                            <i class="fa-regular fa-comments"></i> Chatbot
-                        </a>
-                    </li>
-                    <li>
-                        <a href="report.html" class="active nav-report">
-                            <i class="fa-solid fa-bullhorn"></i> Report
-                        </a>
-                    </li>
+                    <ul class="nav-links">
+                        <li>
+                            <a href="index.html" class="nav-home" data-i18n="nav_home">
+                                <i class="fa-solid fa-house"></i> Home
+                            </a>
+                        </li>
+                        <li>
+                            <a href="learn.html" class="nav-learn" data-i18n="nav_learn">
+                                <i class="fa-solid fa-book-open"></i> Learn
+                            </a>
+                        </li>
+                        <li>
+                            <a href="games.html" class="nav-game" data-i18n="nav_games">
+                                <i class="fa-solid fa-gamepad"></i> Games
+                            </a>
+                        </li>
+                        <li>
+                            <a href="ngo.html" class="nav-ngo" data-i18n="nav_ngos">
+                                <i class="fa-solid fa-handshake"></i> NGOs
+                            </a>
+                        </li>
+                        <li>
+                            <a href="chatbot.html" class="nav-chatbot" data-i18n="nav_chatbot">
+                                <i class="fa-regular fa-comments"></i> Chatbot
+                            </a>
+                        </li>
+                        <li>
+                            <a href="report.html" class="active nav-report" data-i18n="nav_report">
+                                <i class="fa-solid fa-bullhorn"></i> Report
+                            </a>
+                        </li>
+                        <li>
+                            <select id="lang-selector"
+                                style="padding: 5px; border-radius: 5px; border: 1px solid #ccc; outline: none; font-family: inherit;">
+                                <option value="en">English</option>
+                                <option value="hi">Hindi</option>
+                                <option value="gu">Gujarati</option>
+                            </select>
+                        </li>
+                    </ul>
                 </ul>
             </nav>
         </div>
@@ -87,24 +96,29 @@
         <div class="container report-container">
             <div class="report-card">
                 <div class="report-header">
-                    <h1>Report a Waste Issue</h1>
-                    <p>Help us keep EcoCity clean by reporting waste and pollution issues. Your contribution makes a big
+                    <h1 data-i18n="report_title">Report a Waste Issue</h1>
+                    <p data-i18n="report_desc">Help us keep EcoCity clean by reporting waste and pollution issues. Your
+                        contribution makes a big
                         difference!</p>
                 </div>
 
                 <form id="report-form">
                     <!-- Upload Section -->
                     <div class="form-section">
-                        <h3>Upload Photo <span style="color:red">*</span></h3>
+                        <h3><span data-i18n="report_upload_title">Upload Photo</span> <span style="color:red">*</span>
+                        </h3>
                         <div class="upload-zone" id="drop-zone">
                             <div class="upload-content" id="upload-placeholder">
                                 <i class="fa-solid fa-cloud-arrow-up upload-icon"></i>
-                                <p>Drag & drop your waste photo here, or click to browse</p>
+                                <p data-i18n="report_drag_text">Drag & drop your waste photo here, or click to browse
+                                </p>
                                 <div class="upload-buttons">
                                     <button type="button" class="btn-browse"
-                                        onclick="document.getElementById('file-input').click()">Browse Files</button>
+                                        onclick="document.getElementById('file-input').click()"
+                                        data-i18n="btn_browse">Browse Files</button>
                                     <button type="button" class="btn-capture"
-                                        onclick="document.getElementById('camera-input').click()">Capture Photo</button>
+                                        onclick="document.getElementById('camera-input').click()"
+                                        data-i18n="btn_capture">Capture Photo</button>
                                 </div>
                                 <input type="file" id="file-input" hidden accept="image/*">
                                 <input type="file" id="camera-input" hidden accept="image/*" capture="environment">
@@ -118,14 +132,16 @@
                     </div>
                     <!-- Reporter Details (NEW) -->
                     <div class="form-section">
-                        <h3>Reporter Details</h3>
+                        <h3 data-i18n="report_details_title">Reporter Details</h3>
                         <div class="form-row">
                             <div class="form-group col-half">
-                                <label>Full Name <span style="color:red">*</span></label>
+                                <label><span data-i18n="label_full_name">Full Name</span> <span
+                                        style="color:red">*</span></label>
                                 <input type="text" id="reporter-name" placeholder="Enter your name" required>
                             </div>
                             <div class="form-group col-half">
-                                <label>Phone Number <span style="color:red">*</span></label>
+                                <label><span data-i18n="label_phone">Phone Number</span> <span
+                                        style="color:red">*</span></label>
                                 <input type="text" id="reporter-phone" placeholder="Enter your phone number" required>
                             </div>
                         </div>
@@ -133,9 +149,10 @@
 
                     <!-- Details Section -->
                     <div class="form-section">
-                        <h3>Issue Details</h3>
+                        <h3 data-i18n="report_issue_title">Issue Details</h3>
                         <div class="form-group">
-                            <label>Description of the issue <span style="color:red">*</span></label>
+                            <label><span data-i18n="label_desc_issue">Description of the issue</span> <span
+                                    style="color:red">*</span></label>
                             <textarea
                                 placeholder="Describe the waste issue, its location, and any relevant details (e.g., type of waste, how long it's been there)..."
                                 rows="4" required></textarea>
@@ -144,7 +161,8 @@
 
                     <!-- Location Section -->
                     <div class="form-section">
-                        <h3>Exact Location or Landmark <span style="color:red">*</span></h3>
+                        <h3><span data-i18n="report_loc_title">Exact Location or Landmark</span> <span
+                                style="color:red">*</span></h3>
                         <div class="form-group location-group">
                             <input type="text" id="location-input"
                                 placeholder="e.g. Near EcoPark entrance, Main Street beside library..." required>
@@ -158,10 +176,10 @@
 
                     <!-- Classification Section -->
                     <div class="form-section">
-                        <h3>Classification</h3>
+                        <h3 data-i18n="report_class_title">Classification</h3>
                         <div class="form-row">
                             <div class="form-group col-half">
-                                <label>Severity Level</label>
+                                <label data-i18n="label_severity">Severity Level</label>
                                 <select>
                                     <option>Low (Small amounts of litter)</option>
                                     <option selected>Medium (Moderate litter, some impact)</option>
@@ -170,7 +188,7 @@
                                 </select>
                             </div>
                             <div class="form-group col-half">
-                                <label>Target Agency</label>
+                                <label data-i18n="label_agency">Target Agency</label>
                                 <select>
                                     <option>Municipal Corporation</option>
                                     <option>Waste Management Services</option>
@@ -187,6 +205,38 @@
                     </div>
 
                 </form>
+            </div>
+        </div>
+
+        <!-- Testimonials Section -->
+        <div class="report-card" style="margin-top: 30px;">
+            <div class="report-header">
+                <h2 data-i18n="testimonial_section_title">Community Impact Stories</h2>
+            </div>
+
+            <!-- Testimonial Form (Visible only to logged in users) -->
+            <div id="testimonial-form-container" class="hidden">
+                <h3 data-i18n="testimonial_form_title" style="margin-bottom: 10px; color: #077f5b;">Share Your Story
+                </h3>
+                <textarea id="testimonial-text" rows="3" class="form-control"
+                    style="width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 8px;"
+                    data-i18n-placeholder="testimonial_placeholder"
+                    placeholder="How has reporting issues helped your community?"></textarea>
+                <button id="btn-post-testimonial" class="btn-primary" style="padding: 8px 20px;"
+                    data-i18n="btn_post_testimonial">Post Story</button>
+            </div>
+
+            <!-- Login Prompt (Visible to guests) -->
+            <div id="testimonial-login-prompt"
+                style="text-align: center; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+                <p style="color: #666; margin-bottom: 10px;" data-i18n="msg_login_to_post">Please log in to share your
+                    story.</p>
+                <a href="login.html" class="btn-primary" style="text-decoration: none; display: inline-block;">Login</a>
+            </div>
+
+            <!-- Testimonials List -->
+            <div id="testimonials-list" style="margin-top: 30px;">
+                <!-- Items appended here via JS -->
             </div>
         </div>
     </main>
@@ -255,10 +305,11 @@
     <div id="success-modal" class="modal-overlay hidden">
         <div class="modal-content">
             <div class="success-icon"><i class="fa-solid fa-circle-check"></i></div>
-            <h2>Report Submitted!</h2>
-            <p>Thank you for being a responsible citizen. We have notified the relevant authorities.</p>
+            <h2 data-i18n="modal_success_title">Report Submitted!</h2>
+            <p data-i18n="modal_success_desc">Thank you for being a responsible citizen. We have notified the relevant
+                authorities.</p>
             <div class="modal-actions">
-                <button id="btn-modal-close" class="btn-primary">Okay, Great!</button>
+                <button id="btn-modal-close" class="btn-primary" data-i18n="btn_modal_close">Okay, Great!</button>
             </div>
         </div>
     </div>
@@ -271,6 +322,7 @@
     <script src="js/report.js"></script>
     <script src="js/chatbot.js"></script>
     <script src="js/script.js"></script>
+    <script src="js/lang.js"></script>
 </body>
 
 </html>

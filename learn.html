@@ -46,19 +46,33 @@
             <!-- Navigation -->
             <nav>
                 <ul class="nav-links">
-                    <li><a href="index.html" class="nav-home"><i class="fa-solid fa-house"></i> Home</a></li>
-                    <li><a href="learn.html" class="active nav-learn"><i class="fa-solid fa-book-open"></i> Learn</a>
-                    </li>
-                    <li><a href="games.html" class="nav-game"><i class="fa-solid fa-gamepad"></i> Games</a></li>
-                    <li>
-                        <a href="community.html" class="nav-community">
-                            <i class="fa-solid fa-users"></i>
-                            Community
-                        </a>
-                    </li>
-                    <li><a href="chatbot.html" class="nav-chatbot"><i class="fa-regular fa-comments"></i> Chatbot</a>
-                    </li>
-                    <li><a href="report.html" class="nav-report"><i class="fa-solid fa-bullhorn"></i> Report</a></li>
+                    <ul class="nav-links">
+                        <li><a href="index.html" class="nav-home" data-i18n="nav_home"><i class="fa-solid fa-house"></i>
+                                Home</a></li>
+                        <li><a href="learn.html" class="active nav-learn" data-i18n="nav_learn"><i
+                                    class="fa-solid fa-book-open"></i> Learn</a>
+                        </li>
+                        <li><a href="games.html" class="nav-game" data-i18n="nav_games"><i
+                                    class="fa-solid fa-gamepad"></i> Games</a></li>
+                        <li>
+                            <a href="ngo.html" class="nav-ngo" data-i18n="nav_ngos">
+                                <i class="fa-solid fa-handshake"></i> NGOs
+                            </a>
+                        </li>
+                        <li><a href="chatbot.html" class="nav-chatbot" data-i18n="nav_chatbot"><i
+                                    class="fa-regular fa-comments"></i> Chatbot</a>
+                        </li>
+                        <li><a href="report.html" class="nav-report" data-i18n="nav_report"><i
+                                    class="fa-solid fa-bullhorn"></i> Report</a></li>
+                        <li>
+                            <select id="lang-selector"
+                                style="padding: 5px; border-radius: 5px; border: 1px solid #ccc; outline: none; font-family: inherit;">
+                                <option value="en">English</option>
+                                <option value="hi">Hindi</option>
+                                <option value="gu">Gujarati</option>
+                            </select>
+                        </li>
+                    </ul>
                 </ul>
             </nav>
         </div>
@@ -66,48 +80,284 @@
 
     <section class="learn-hero">
         <div class="container">
-            <h1>Master Waste Management</h1>
-            <p>Interactive guides and modules to help you sort better and save the planet.</p>
+            <h1 data-i18n="learn_hero_title">Master Waste Management</h1>
+            <p data-i18n="learn_hero_desc">Interactive guides and modules to help you sort better and save the planet.
+            </p>
+
+            <!-- Toggle Buttons -->
+            <div class="learn-toggle">
+                <button id="btn-text" class="toggle-btn active">Text Based</button>
+                <button id="btn-video" class="toggle-btn">Videos</button>
+            </div>
         </div>
     </section>
 
     <main class="container learn-grid">
-        <!-- Card 1 -->
-        <article class="learn-card">
-            <div class="learn-img" style="background:#dcfce7; color:#15803d;">
-                <i class="fa-solid fa-recycle"></i>
-            </div>
-            <div class="learn-content">
-                <h3>The 3 R's</h3>
-                <p>Reduce, Reuse, Recycle. Learn the golden rules of waste management.</p>
-                <a href="#" class="btn-learn">Read Module <i class="fa-solid fa-arrow-right"></i></a>
-            </div>
-        </article>
+        <!-- Text Section -->
+        <div id="text-section">
 
-        <!-- Card 2 -->
-        <article class="learn-card">
-            <div class="learn-img" style="background:#e0f2fe; color:#0369a1;">
-                <i class="fa-solid fa-trash-can"></i>
-            </div>
-            <div class="learn-content">
-                <h3>Sorting 101</h3>
-                <p>Which bin does it go in? Master the art of color-coded dustbins.</p>
-                <a href="#" class="btn-learn">Read Module <i class="fa-solid fa-arrow-right"></i></a>
-            </div>
-        </article>
+            <!-- Learn Topics Grid -->
+            <h2 class="flip-section-title">Waste Management Basics</h2>
+            <div class="flip-card-grid">
+                <!-- 1. What is waste -->
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front fc-def">
+                            <div class="learn-icon">🗑️</div>
+                            <h3>What is Waste?</h3>
+                        </div>
+                        <div class="flip-card-back">
+                            <p>Waste is any substance which is discarded after primary use, or is worthless, defective
+                                and of no use.</p>
+                        </div>
+                    </div>
+                </div>
 
-        <!-- Card 3 -->
-        <article class="learn-card">
-            <div class="learn-img" style="background:#fef3c7; color:#d97706;">
-                <i class="fa-solid fa-leaf"></i>
+                <!-- 2. Types of waste -->
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front fc-types">
+                            <div class="learn-icon">🍌</div>
+                            <h3>Types of Waste</h3>
+                        </div>
+                        <div class="flip-card-back">
+                            <p>Mainly classified into: <strong>Wet</strong> (Organic), <strong>Dry</strong>
+                                (Recyclable), <strong>Biomedical</strong>, <strong>Hazardous</strong>, and
+                                <strong>E-waste</strong>.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Waste segregation -->
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front fc-seg">
+                            <div class="learn-icon">🚮</div>
+                            <h3>Waste Segregation</h3>
+                        </div>
+                        <div class="flip-card-back">
+                            <p>Separating waste into Dry (Blue Bin) and Wet (Green Bin) is the first and most crucial
+                                step for effective recycling.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. 5 R's -->
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front fc-5r">
+                            <div class="learn-icon">♻️</div>
+                            <h3>The 5 R's</h3>
+                        </div>
+                        <div class="flip-card-back">
+                            <p><strong>Refuse</strong> what you don't need, <strong>Reduce</strong> what you use,
+                                <strong>Reuse</strong> items, <strong>Repurpose</strong> old things, and
+                                <strong>Recycle</strong>.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. Waste out of best items -->
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front fc-best">
+                            <div class="learn-icon">✂️</div>
+                            <h3>Best out of Waste</h3>
+                        </div>
+                        <div class="flip-card-back">
+                            <p>Get creative! Turn waste materials like bottles, cans, and paper into useful crafts,
+                                decor, or utility items.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6. Refusing plastic production -->
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front fc-plastic">
+                            <div class="learn-icon">🛑</div>
+                            <h3>Refusing Plastic</h3>
+                        </div>
+                        <div class="flip-card-back">
+                            <p>Single-use plastics are a major pollutant. Say NO to plastic bags, straws, and bottles to
+                                stop pollution at the source.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 7. Innovation (Plastic & Flower) -->
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front fc-flower">
+                            <div class="learn-icon">🌸</div>
+                            <h3>Innovative Recycling</h3>
+                        </div>
+                        <div class="flip-card-back">
+                            <p>Innovative solutions include making new products from recycled plastics and turning waste
+                                temple flowers into incense sticks.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 8. Composition -->
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front fc-comp">
+                            <div class="learn-icon">🍂</div>
+                            <h3>Composition</h3>
+                        </div>
+                        <div class="flip-card-back">
+                            <p>Composting is the natural process of recycling organic matter, such as leaves and food
+                                scraps, into a valuable fertilizer.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="learn-content">
-                <h3>Composting</h3>
-                <p>Turn your kitchen waste into gold for your garden. It's magic!</p>
-                <a href="#" class="btn-learn">Read Module <i class="fa-solid fa-arrow-right"></i></a>
-            </div>
-        </article>
+        </div>
+        </div>
+
+        <!-- Video Section (Initially Hidden) -->
+        <div id="video-section" style="display: none;">
+
+            <!-- Video 1: Gujarati SWM -->
+            <article class="video-card">
+                <div class="video-container paused">
+                    <video
+                        src="assests/LEARN TAB/Videos/Solid Waste Management, Gujarati Language - UNNATI (360p, h264).mp4"
+                        preload="metadata"></video>
+                    <div class="play-overlay"><i class="fa-solid fa-play"></i></div>
+                    <div class="custom-controls">
+                        <button class="control-btn play-btn"><i class="fa-solid fa-play"></i></button>
+                        <div class="progress-container">
+                            <div class="progress-bar"></div>
+                        </div>
+                        <span class="video-time">00:00 / 00:00</span>
+                        <button class="control-btn fullscreen-btn"><i class="fa-solid fa-expand"></i></button>
+                    </div>
+                </div>
+                <div class="learn-content">
+                    <h3>Solid Waste Management (Gujarati)</h3>
+                    <p>Comprehensive guide by UNNATI on managing solid waste effectively.</p>
+                </div>
+            </article>
+
+            <!-- Video 2: Hindi Waste Management -->
+            <article class="video-card">
+                <div class="video-container paused">
+                    <video src="assests/LEARN TAB/Videos/WASTE MANAGEMENT HINDI - Subodh Pande (360p, h264).mp4"
+                        preload="metadata"></video>
+                    <div class="play-overlay"><i class="fa-solid fa-play"></i></div>
+                    <div class="custom-controls">
+                        <button class="control-btn play-btn"><i class="fa-solid fa-play"></i></button>
+                        <div class="progress-container">
+                            <div class="progress-bar"></div>
+                        </div>
+                        <span class="video-time">00:00 / 00:00</span>
+                        <button class="control-btn fullscreen-btn"><i class="fa-solid fa-expand"></i></button>
+                    </div>
+                </div>
+                <div class="learn-content">
+                    <h3>Waste Management (Hindi)</h3>
+                    <p>Expert insights from Subodh Pande on waste disposal techniques.</p>
+                </div>
+            </article>
+
+            <!-- Video 3: Garbage Truck -->
+            <article class="video-card">
+                <div class="video-container paused">
+                    <video src="assests/LEARN TAB/Videos/garbage truck.mp4" preload="metadata"></video>
+                    <div class="play-overlay"><i class="fa-solid fa-play"></i></div>
+                    <div class="custom-controls">
+                        <button class="control-btn play-btn"><i class="fa-solid fa-play"></i></button>
+                        <div class="progress-container">
+                            <div class="progress-bar"></div>
+                        </div>
+                        <span class="video-time">00:00 / 00:00</span>
+                        <button class="control-btn fullscreen-btn"><i class="fa-solid fa-expand"></i></button>
+                    </div>
+                </div>
+                <div class="learn-content">
+                    <h3>Garbage Truck in Action</h3>
+                    <p>See how modern garbage trucks collect and transport waste.</p>
+                </div>
+            </article>
+
+            <!-- Video 4: Additional Resource 1 -->
+            <article class="video-card">
+                <div class="video-container paused">
+                    <video src="assests/LEARN TAB/Videos/video1.mp4.crdownload.mp4" preload="metadata"></video>
+                    <div class="play-overlay"><i class="fa-solid fa-play"></i></div>
+                    <div class="custom-controls">
+                        <button class="control-btn play-btn"><i class="fa-solid fa-play"></i></button>
+                        <div class="progress-container">
+                            <div class="progress-bar"></div>
+                        </div>
+                        <span class="video-time">00:00 / 00:00</span>
+                        <button class="control-btn fullscreen-btn"><i class="fa-solid fa-expand"></i></button>
+                    </div>
+                </div>
+                <div class="learn-content">
+                    <h3>Eco-Friendly Habits</h3>
+                    <p>Simple daily habits to reduce your carbon footprint.</p>
+                </div>
+            </article>
+
+            <!-- Video 5: Additional Resource 2 -->
+            <article class="video-card">
+                <div class="video-container paused">
+                    <video src="assests/LEARN TAB/Videos/video4.mp4.crdownload.mp4" preload="metadata"></video>
+                    <div class="play-overlay"><i class="fa-solid fa-play"></i></div>
+                    <div class="custom-controls">
+                        <button class="control-btn play-btn"><i class="fa-solid fa-play"></i></button>
+                        <div class="progress-container">
+                            <div class="progress-bar"></div>
+                        </div>
+                        <span class="video-time">00:00 / 00:00</span>
+                        <button class="control-btn fullscreen-btn"><i class="fa-solid fa-expand"></i></button>
+                    </div>
+                </div>
+                <div class="learn-content">
+                    <h3>Sustainable Living</h3>
+                    <p>Learn more about living a sustainable and eco-friendly life.</p>
+                </div>
+            </article>
+
+        </div>
     </main>
+
+    <script src="js/video-player.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const btnText = document.getElementById('btn-text');
+            const btnVideo = document.getElementById('btn-video');
+            const sections = {
+                text: document.getElementById('text-section'),
+                video: document.getElementById('video-section')
+            };
+
+            function switchTab(type) {
+                // Reset buttons
+                btnText.classList.remove('active');
+                btnVideo.classList.remove('active');
+
+                // Hide all sections
+                sections.text.style.display = 'none';
+                sections.video.style.display = 'none';
+
+                // Activate selected
+                if (type === 'text') {
+                    btnText.classList.add('active');
+                    sections.text.style.display = 'grid'; // Maintain grid layout
+                } else {
+                    btnVideo.classList.add('active');
+                    sections.video.style.display = 'grid'; // Maintain grid layout
+                }
+            }
+
+            btnText.addEventListener('click', () => switchTab('text'));
+            btnVideo.addEventListener('click', () => switchTab('video'));
+        });
+    </script>
 
     <!-- Footer -->
     <footer class="footer">
@@ -170,6 +420,8 @@
     </footer>
 
     <script src="js/script.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/lang.js"></script>
     <script src="js/chatbot.js"></script>
 </body>
 

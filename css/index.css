@@ -19,7 +19,7 @@
 .hero-text {
     flex: 0.8;
     /* Make text take less space */
-    max-width: 500px;
+    max-width: 100%;
 }
 
 .hero-text h1 {
@@ -55,7 +55,7 @@
     align-items: center;
     position: relative;
     /* Context for absolute positioning of dustbin */
-    overflow: hidden;
+    overflow: visible;
     /* Prevent overflow */
     padding-right: 200px;
     /* Reserve space for dustbin on the right */

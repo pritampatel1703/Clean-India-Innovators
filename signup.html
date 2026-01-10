@@ -17,31 +17,42 @@
 
 <body class="auth-page">
 
-    <a href="index.html" class="back-home"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+    <div style="position: absolute; top: 20px; right: 20px;">
+        <select id="lang-selector"
+            style="padding: 5px; border-radius: 5px; border: 1px solid #ccc; outline: none; font-family: inherit;">
+            <option value="en">English</option>
+            <option value="hi">Hindi</option>
+            <option value="gu">Gujarati</option>
+        </select>
+    </div>
+
+    <a href="index.html" class="back-home" data-i18n="auth_back_home"><i class="fa-solid fa-arrow-left"></i> Back to
+        Home</a>
 
     <div class="auth-container">
         <div class="auth-logo">
             <img src="LOGO/logo circle.png" alt="Logo">
         </div>
         <div class="auth-header">
-            <h2>Create Account</h2>
-            <p>Join the movement for a cleaner planet</p>
+            <h2 data-i18n="auth_signup_title">Create Account</h2>
+            <p data-i18n="auth_signup_desc">Join the movement for a cleaner planet</p>
         </div>
 
         <div id="error-message" class="error-message"></div>
 
         <form class="auth-form" onsubmit="handleSignup(event)">
             <div class="form-group">
-                <label>Full Name</label>
-                <input type="text" id="name" placeholder="Enter your name" required>
+                <label data-i18n="label_name">Full Name</label>
+                <input type="text" id="name" placeholder="Enter your name" required data-i18n="placeholder_name">
             </div>
             <div class="form-group">
-                <label>Email Address</label>
-                <input type="email" id="email" placeholder="Enter your email" required>
+                <label data-i18n="label_email">Email Address</label>
+                <input type="email" id="email" placeholder="Enter your email" required data-i18n="placeholder_email">
             </div>
             <div class="form-group">
-                <label>Password</label>
-                <input type="password" id="password" placeholder="Create a password" required>
+                <label data-i18n="label_password">Password</label>
+                <input type="password" id="password" placeholder="Create a password" required
+                    data-i18n="placeholder_create_password">
             </div>
 
             <!-- Aadhar Verification -->
@@ -50,22 +61,23 @@
             </div>
 
             <div class="form-group">
-                <label>Aadhar Card Number</label>
+                <label data-i18n="label_aadhar">Aadhar Card Number</label>
                 <div class="verify-group">
                     <input type="text" id="aadhar" placeholder="12-digit Aadhar Number" maxlength="12"
-                        oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
-                    <button type="button" class="btn-verify" onclick="sendOTP()">Verify</button>
+                        oninput="this.value = this.value.replace(/[^0-9]/g, '')" required
+                        data-i18n="placeholder_aadhar">
+                    <button type="button" class="btn-verify" onclick="sendOTP()" data-i18n="btn_verify">Verify</button>
                 </div>
             </div>
 
             <div class="form-group hidden" id="otp-group">
-                <label>Enter OTP</label>
-                <input type="text" id="otp" placeholder="Enter 6-digit OTP" maxlength="6">
+                <label data-i18n="label_otp">Enter OTP</label>
+                <input type="text" id="otp" placeholder="Enter 6-digit OTP" maxlength="6" data-i18n="placeholder_otp">
                 <small style="color: green; display: none;" id="otp-status">OTP Verified!</small>
             </div>
 
             <div class="form-group">
-                <label>Upload Aadhar Card (Photo)</label>
+                <label data-i18n="label_upload_aadhar">Upload Aadhar Card (Photo)</label>
                 <div class="file-upload-wrapper">
                     <input type="file" id="aadhar-file" accept="image/*" required onchange="previewAadhar(this)">
                     <div class="file-preview hidden" id="aadhar-preview-container">
@@ -75,15 +87,17 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn-auth">Sign Up</button>
+            <button type="submit" class="btn-auth" data-i18n="btn_signup">Sign Up</button>
         </form>
 
         <div class="auth-footer">
-            Already have an account? <a href="login.html">Login</a>
+            <span data-i18n="auth_has_account">Already have an account?</span> <a href="login.html"
+                data-i18n="btn_login">Login</a>
         </div>
     </div>
 
     <script src="js/auth.js"></script>
+    <script src="js/lang.js"></script>
 </body>
 
 </html>

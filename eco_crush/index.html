@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eco Crush Saga</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <main class="game-container">
+        <header>
+            <h1>Eco Crush Saga</h1>
+            <p>Match 3 waste items to recycle them!</p>
+            <div class="stats-bar">
+                <div class="stat">
+                    <span class="stat-label">Score</span>
+                    <span class="stat-value" id="score">0</span>
+                </div>
+            </div>
+        </header>
+
+        <div class="grid-container">
+            <div class="grid" id="grid"></div>
+        </div>
+
+        <div class="controls">
+            <button id="restart-btn" class="btn-primary">New Game</button>
+            <button id="rules-btn" class="btn-secondary">How to Play</button>
+        </div>
+    </main>
+
+    <div id="rules-modal" class="modal hidden">
+        <div class="modal-content">
+            <h2>How to Play</h2>
+            <p style="margin-bottom: 1rem; opacity: 0.9;">Match 3 items to sort the waste!</p>
+
+            <div
+                style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; text-align: left; margin-bottom: 1.5rem; font-size: 0.9rem;">
+                <div>🍎 <strong>Wet</strong> (Organic)</div>
+                <div>🥤 <strong>Dry</strong> (Recyclable)</div>
+                <div>📱 <strong>E-Waste</strong> (Electronic)</div>
+                <div>💡 <strong>Hazardous</strong> (Chemical)</div>
+                <div>💊 <strong>Biomedical</strong> (Medical)</div>
+            </div>
+
+            <ul class="rules-list">
+                <li>👆 <strong>Select</strong>: Click/Tap an item.</li>
+                <li>↔️ <strong>Swap</strong>: Click/Tap an adjacent item.</li>
+                <li>✅ <strong>Match</strong>: Align 3+ same items.</li>
+                <li>🧹 <strong>Swipe</strong>: You can also swipe to swap!</li>
+            </ul>
+            <button id="close-rules-btn" class="btn-primary">Start Sorting!</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,483 @@
+:root {
+    --primary-green: #077f5b;
+    --primary-light: #2ecc71;
+    --accent-yellow: #f1c40f;
+    --bg-light: #f0fdf4;
+    /* Very light green hue */
+    --text-dark: #2c3e50;
+    --white: #ffffff;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --radius: 20px;
+    --font-main: 'Outfit', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+#app-container {
+    width: 100%;
+    max-width: 800px;
+    height: 100vh;
+    max-height: 600px;
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Helpers */
+.hidden {
+    display: none !important;
+}
+
+.screen {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: var(--white);
+    transition: opacity 0.3s ease;
+}
+
+/* Buttons */
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-light), var(--primary-green));
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    font-family: var(--font-main);
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(46, 204, 113, 0.6);
+}
+
+.btn-primary:active {
+    transform: scale(0.98);
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* Header */
+#game-hud {
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    background: var(--bg-light);
+    border-bottom: 2px solid #e1e1e1;
+    z-index: 10;
+}
+
+.hud-item {
+    font-weight: 700;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#level-title {
+    color: var(--primary-green);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Start Screen */
+#start-screen {
+    background: linear-gradient(to bottom, #d4fc79 0%, #96e6a1 100%);
+    color: var(--text-dark);
+}
+
+.hero-banner h1 {
+    font-size: 3.5rem;
+    margin-bottom: 10px;
+}
+
+.hero-banner .highlight {
+    color: var(--primary-green);
+    background: white;
+    padding: 0 10px;
+    border-radius: 10px;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+.hero-character-large {
+    font-size: 8rem;
+    margin-bottom: 30px;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+/* Level Select */
+.level-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    width: 100%;
+    margin-top: 30px;
+}
+
+.level-card {
+    background: white;
+    border: 2px solid #eee;
+    border-radius: 15px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: var(--font-main);
+}
+
+.level-card:hover:not(.locked) {
+    border-color: var(--primary-green);
+    transform: translateY(-5px);
+}
+
+.level-card .lvl-icon {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.level-card.locked {
+    filter: grayscale(1);
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Level Content Styles */
+.scenario-box {
+    text-align: center;
+}
+
+/* Level 2: Room Items */
+.scene-room {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.room-items {
+    display: flex;
+    gap: 40px;
+    margin: 30px 0;
+}
+
+.interactive-item {
+    background: white;
+    border: 3px solid #eee;
+    padding: 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s;
+    min-width: 150px;
+}
+
+.interactive-item .icon {
+    font-size: 4rem;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.interactive-item.on {
+    border-color: #e74c3c;
+    box-shadow: 0 0 15px rgba(231, 76, 60, 0.3);
+    animation: shake 2s infinite;
+}
+
+.interactive-item.off {
+    border-color: var(--primary-green);
+    background: #eafaf1;
+    transform: scale(0.95);
+}
+
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(-5deg);
+    }
+
+    75% {
+        transform: rotate(5deg);
+    }
+}
+
+/* Level 3 & 5: Drag & Drop */
+.drag-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.drag-item {
+    font-size: 3rem;
+    padding: 15px;
+    background: white;
+    border: 2px dashed #95a5a6;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.drag-item.selected {
+    border-color: var(--primary-green);
+    background: #eafaf1;
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.drop-zones {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    width: 100%;
+}
+
+.drop-zone {
+    width: 120px;
+    height: 140px;
+    border: 3px solid #ccc;
+    background: #f9f9f9;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding-bottom: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.drop-zone:hover {
+    transform: scale(1.05);
+}
+
+/* Level 4: Repair */
+.repair-bench {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    background: #ecf0f1;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+}
+
+.toy-outline {
+    font-size: 8rem;
+    opacity: 0.2;
+    filter: grayscale(1);
+}
+
+.toy-part {
+    position: absolute;
+    font-size: 4rem;
+    cursor: pointer;
+    transition: all 0.5s ease-in-out;
+}
+
+.toy-part.dragging {
+    opacity: 0.8;
+    transform: scale(1.2);
+    cursor: grabbing;
+    z-index: 1000;
+}
+
+/* Snapped Positions */
+.toy-part.fixed {
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 10;
+}
+
+.fixed-head {
+    top: -25% !important;
+    left: 50% !important;
+    transform: translateX(-50%);
+}
+
+.fixed-arm-l {
+    top: 30% !important;
+    left: -25% !important;
+    transform: rotate(45deg);
+}
+
+.fixed-arm-r {
+    top: 30% !important;
+    right: -25% !important;
+    left: auto !important;
+    transform: rotate(-45deg);
+}
+
+.fixed-leg-l {
+    bottom: -30% !important;
+    left: 10% !important;
+}
+
+.fixed-leg-r {
+    bottom: -30% !important;
+    right: 10% !important;
+    left: auto !important;
+}
+
+/* Level 5: Recycle Bins */
+.recycle-bin-zone {
+    border-width: 4px;
+}
+
+.recycle-bin-zone[data-id="compost"] {
+    border-color: #27ae60;
+    background: #e9f7ef;
+}
+
+.recycle-bin-zone[data-id="recycle"] {
+    border-color: #3498db;
+    background: #ebf5fb;
+}
+
+.recycle-bin-zone[data-id="haz"] {
+    border-color: #e74c3c;
+    background: #fdedec;
+}
+
+.recycle-bin-zone[data-id="ewaste"] {
+    border-color: #f1c40f;
+    background: #fef9e7;
+}
+
+/* Dialogue */
+#dialogue-box {
+    height: 180px;
+    width: 100%;
+    background: white;
+    border-top: 4px solid var(--primary-green);
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.mascot {
+    font-size: 4rem;
+    margin-right: 20px;
+}
+
+.message-content {
+    flex: 1;
+}
+
+#dialogue-text {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+#choices-container {
+    display: flex;
+    gap: 15px;
+}
+
+.choice-btn {
+    background: var(--primary-green);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-family: var(--font-main);
+    transition: background 0.2s;
+}
+
+.choice-btn:hover {
+    background: #066649;
+}
+
+.choice-btn.secondary {
+    background: #95a5a6;
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+    #app-container {
+        height: 100vh;
+        border-radius: 0;
+        max-height: none;
+    }
+
+    .hero-banner h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-character-large {
+        font-size: 6rem;
+    }
+
+    .level-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

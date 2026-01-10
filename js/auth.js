@@ -252,13 +252,13 @@ function updateNav() {
 
     if (user) {
         li.innerHTML = `
-            <a href="#" onclick="logout(); return false;" style="color: #ef4444;">
+            <a href="#" onclick="logout(); return false;" style="color: #ef4444;" data-i18n="nav_logout">
                 <i class="fa-solid fa-right-from-bracket"></i> Logout
             </a>
         `;
     } else {
         li.innerHTML = `
-            <a href="login.html" style="color: #077f5b; font-weight: 600;">
+            <a href="login.html" style="color: #077f5b; font-weight: 600;" data-i18n="nav_login">
                 <i class="fa-solid fa-user"></i> Login
             </a>
         `;

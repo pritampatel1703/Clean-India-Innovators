@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clean City Runner</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div id="game-container">
+        <!-- Game Canvas -->
+        <canvas id="game-canvas"></canvas>
+
+        <!-- UI Overlay -->
+        <div id="ui-layer">
+
+            <!-- HUD: Score & Stats -->
+            <div id="hud-top">
+                <div class="score-pill">
+                    <span class="icon">⭐</span>
+                    <span id="score-text">0</span>
+                </div>
+                <div class="score-pill">
+                    <span class="icon">❤️</span>
+                    <span id="lives-text">3</span>
+                </div>
+            </div>
+
+            <!-- Bin Controls (Desktop/Touch) -->
+            <div id="bins-container">
+                <div class="bin-btn" data-type="wet" style="border-color: #2ECC71;"> <!-- Green -->
+                    <div class="bin-icon">🍏</div>
+                    <span class="key-hint">1</span>
+                    <span class="label">Wet</span>
+                </div>
+                <div class="bin-btn" data-type="dry" style="border-color: #3498DB;"> <!-- Blue -->
+                    <div class="bin-icon">🥤</div>
+                    <span class="key-hint">2</span>
+                    <span class="label">Dry</span>
+                </div>
+                <div class="bin-btn" data-type="haz" style="border-color: #E74C3C;"> <!-- Red -->
+                    <div class="bin-icon">🔋</div>
+                    <span class="key-hint">3</span>
+                    <span class="label">Hazard</span>
+                </div>
+                <div class="bin-btn" data-type="ewaste" style="border-color: #F1C40F;"> <!-- Yellow -->
+                    <div class="bin-icon">💻</div>
+                    <span class="key-hint">4</span>
+                    <span class="label">E-Waste</span>
+                </div>
+            </div>
+
+            <!-- Start Screen -->
+            <div id="start-screen" class="overlay active">
+                <div class="card">
+                    <h1 class="game-title">Clean City <span class="highlight">Runner</span></h1>
+                    <p>Run, Collect, and Sort! Keep the city clean.</p>
+                    <div class="tutorial">
+                        <div class="step">🏃 Auto-Run</div>
+                        <div class="step">⬆️ Jump (Space / Tap)</div>
+                        <div class="step">🗑️ Sort Waste (1-4 / Click)</div>
+                    </div>
+                    <button id="start-btn" class="btn-primary">Start Running</button>
+                    <p class="difficulty-select">
+                        Difficulty: <button class="btn-sm active" data-diff="easy">Easy</button> <button class="btn-sm"
+                            data-diff="hard">Fast</button>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Game Over Screen -->
+            <div id="game-over-screen" class="overlay hidden">
+                <div class="card">
+                    <h2>Game Over!</h2>
+                    <p>You helped clean the city!</p>
+                    <div class="final-score">Score: <span id="final-score">0</span></div>
+                    <button id="restart-btn" class="btn-primary">Play Again</button>
+                </div>
+            </div>
+
+            <!-- Feedback Overlay -->
+            <div id="feedback-overlay" class="hidden"></div>
+
+            <!-- Held Item Indicator -->
+            <div id="held-item" class="hidden">
+                <span id="held-icon">🍌</span>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

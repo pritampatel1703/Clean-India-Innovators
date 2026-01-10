@@ -1,0 +1,350 @@
+:root {
+    --primary-green: #077f5b;
+    --secondary-green: #4caf50;
+    --light-green: #e8f5e9;
+    --sky-blue: #e0f7fa;
+    --soil-brown: #795548;
+    --warning-red: #e57373;
+    --white: #ffffff;
+    --text-color: #2c3e50;
+    --font-heading: 'Fredoka One', cursive;
+    --font-body: 'Nunito', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    user-select: none;
+    /* Prevent selection text selection during drag */
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-body);
+    background-color: var(--light-green);
+    color: var(--text-color);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.game-container {
+    width: 100%;
+    max-width: 1024px;
+    height: 100vh;
+    max-height: 768px;
+    background-color: var(--white);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+}
+
+/* HUD */
+.hud {
+    padding: 15px 30px;
+    background-color: var(--primary-green);
+    color: var(--white);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+
+.score-container,
+.level-container {
+    font-family: var(--font-heading);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.badges-container {
+    display: flex;
+    gap: 5px;
+}
+
+.badge {
+    width: 30px;
+    height: 30px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+}
+
+/* Game Area */
+.game-area {
+    flex: 1;
+    display: flex;
+    position: relative;
+    background: linear-gradient(to bottom, var(--sky-blue) 0%, var(--light-green) 100%);
+}
+
+.waste-source {
+    width: 30%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.draggable-item {
+    width: 80px;
+    height: 80px;
+    background-color: white;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
+    cursor: grab;
+    transition: transform 0.2s, box-shadow 0.2s;
+    touch-action: none;
+}
+
+.draggable-item:active {
+    cursor: grabbing;
+    transform: scale(1.1);
+}
+
+.draggable-item.dragging {
+    opacity: 0.5;
+}
+
+/* Garden & Compost Bin */
+.garden-area {
+    width: 70%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    padding-bottom: 40px;
+}
+
+.background-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.sun {
+    position: absolute;
+    top: 30px;
+    right: 50px;
+    width: 60px;
+    height: 60px;
+    background-color: #fdd835;
+    border-radius: 50%;
+    box-shadow: 0 0 20px #fdd835;
+    animation: sunPulse 4s infinite alternate;
+}
+
+@keyframes sunPulse {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.1);
+    }
+}
+
+.cloud {
+    position: absolute;
+    background: white;
+    border-radius: 50px;
+    opacity: 0.8;
+}
+
+.cloud-1 {
+    top: 60px;
+    left: 50px;
+    width: 100px;
+    height: 40px;
+    animation: float 15s linear infinite;
+}
+
+.cloud-2 {
+    top: 100px;
+    left: 200px;
+    width: 80px;
+    height: 35px;
+    animation: float 20s linear infinite reverse;
+}
+
+@keyframes float {
+    from {
+        transform: translateX(-20px);
+    }
+
+    to {
+        transform: translateX(20px);
+    }
+}
+
+.compost-station {
+    z-index: 5;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.compost-bin {
+    width: 180px;
+    height: 220px;
+    background-color: #5d4037;
+    border-radius: 10px 10px 20px 20px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    border: 4px solid #4e342e;
+    overflow: hidden;
+    transition: transform 0.2s;
+}
+
+.compost-bin.drag-hover {
+    transform: scale(1.05);
+    border-color: var(--secondary-green);
+}
+
+.bin-lid {
+    position: absolute;
+    top: -15px;
+    width: 200px;
+    height: 30px;
+    background-color: #4e342e;
+    border-radius: 10px;
+    z-index: 2;
+    transform-origin: left;
+    transition: transform 0.3s;
+}
+
+.compost-bin.open .bin-lid {
+    transform: rotate(-30deg) translateY(-10px);
+}
+
+.bin-body {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background-color: #6d4c41;
+}
+
+.compost-fill {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0%;
+    /* Grows based on progress */
+    background-color: #3e2723;
+    transition: height 0.5s ease-out;
+}
+
+.bin-label {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: bold;
+    font-family: var(--font-heading);
+    z-index: 3;
+}
+
+.garden-plants {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    width: 150px;
+    height: 100px;
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    pointer-events: none;
+    z-index: 4;
+}
+
+.plant {
+    font-size: 2rem;
+    transform-origin: bottom;
+    animation: grow 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes grow {
+    from {
+        transform: scale(0);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
+
+/* Feedback Footer */
+.feedback-area {
+    padding: 15px;
+    background-color: white;
+    border-top: 4px solid var(--primary-green);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.eco-guide {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    max-width: 800px;
+}
+
+.guide-avatar {
+    font-size: 3rem;
+    background-color: var(--light-green);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid var(--primary-green);
+}
+
+.guide-message-box {
+    background-color: var(--light-green);
+    padding: 10px 20px;
+    border-radius: 15px;
+    position: relative;
+    font-weight: 600;
+}
+
+.guide-message-box::after {
+    content: '';
+    position: absolute;
+    left: -10px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-width: 10px 10px 10px 0;
+    border-style: solid;
+    border-color: transparent var(--light-green) transparent transparent;
+}

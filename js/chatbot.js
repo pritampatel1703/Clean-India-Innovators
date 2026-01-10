@@ -439,7 +439,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     async function callGeminiAPI(userText) {
-        const API_KEY = "AIzaSyAn7dnVYbsSs_tO58XHiXZ_41z54ciD_BY";
+        const API_KEY = "AIzaSyAnQM5rLf35lxSF09v6d0XzqJ47DrLv4Fw";
         const API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent";
 
         try {

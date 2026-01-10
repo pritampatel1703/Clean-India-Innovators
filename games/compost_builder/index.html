@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compost Builder</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="game-container">
+        <!-- HUD Header -->
+        <header class="hud">
+            <div class="score-container">
+                <span class="icon">🌟</span>
+                <span id="score">0</span> Eco-Points
+            </div>
+            <div class="level-container">
+                Stage: <span id="stage-name">Empty Bin</span>
+            </div>
+            <div class="badges-container" id="badges-container">
+                <!-- Badges will appear here -->
+            </div>
+        </header>
+
+        <!-- Main Gameplay Area -->
+        <main class="game-area">
+            <!-- Left: Waste Source -->
+            <div class="waste-source" id="waste-source">
+                <!-- Draggable waste items will spawn here -->
+            </div>
+
+            <!-- Right: Compost Bin & Garden -->
+            <div class="garden-area">
+                <div class="background-elements">
+                    <div class="sun"></div>
+                    <div class="cloud cloud-1"></div>
+                    <div class="cloud cloud-2"></div>
+                </div>
+
+                <div class="compost-station">
+                    <div class="compost-bin" id="compost-bin">
+                        <div class="bin-lid"></div>
+                        <div class="bin-body">
+                            <div class="compost-fill" id="compost-fill"></div>
+                            <div class="bin-label">Compost Bin</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="garden-plants" id="garden-plants">
+                    <!-- Plants will grow here -->
+                </div>
+            </div>
+        </main>
+
+        <!-- Eco-Guide / Feedback Area -->
+        <footer class="feedback-area">
+            <div class="eco-guide">
+                <div class="guide-avatar">🌿</div> <!-- Placeholder for Guide Character -->
+                <div class="guide-message-box">
+                    <p id="guide-message">Hi! I'm Eco-Guide. Drag organic waste to the bin to make compost!</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

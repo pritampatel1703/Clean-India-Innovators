@@ -70,18 +70,30 @@
             <!-- Navigation -->
             <nav>
                 <ul class="nav-links">
-                    <li><a href="index.html" class="nav-home"><i class="fa-solid fa-house"></i> Home</a></li>
-                    <li><a href="learn.html" class="nav-learn"><i class="fa-solid fa-book-open"></i> Learn</a></li>
-                    <li><a href="games.html" class="nav-game"><i class="fa-solid fa-gamepad"></i> Games</a></li>
+                    <li><a href="index.html" class="nav-home" data-i18n="nav_home"><i class="fa-solid fa-house"></i>
+                            Home</a></li>
+                    <li><a href="learn.html" class="nav-learn" data-i18n="nav_learn"><i
+                                class="fa-solid fa-book-open"></i> Learn</a></li>
+                    <li><a href="games.html" class="nav-game" data-i18n="nav_games"><i class="fa-solid fa-gamepad"></i>
+                            Games</a></li>
                     <li>
-                        <a href="community.html" class="nav-community">
-                            <i class="fa-solid fa-users"></i>
-                            Community
+                        <a href="ngo.html" class="nav-ngo" data-i18n="nav_ngos">
+                            <i class="fa-solid fa-handshake"></i> NGOs
                         </a>
                     </li>
-                    <li><a href="chatbot.html" class="active nav-chatbot"><i class="fa-regular fa-comments"></i>
+                    <li><a href="chatbot.html" class="active nav-chatbot" data-i18n="nav_chatbot"><i
+                                class="fa-regular fa-comments"></i>
                             Chatbot</a></li>
-                    <li><a href="report.html" class="nav-report"><i class="fa-solid fa-bullhorn"></i> Report</a></li>
+                    <li><a href="report.html" class="nav-report" data-i18n="nav_report"><i
+                                class="fa-solid fa-bullhorn"></i> Report</a></li>
+                    <li>
+                        <select id="lang-selector"
+                            style="padding: 5px; border-radius: 5px; border: 1px solid #ccc; outline: none; font-family: inherit;">
+                            <option value="en">English</option>
+                            <option value="hi">Hindi</option>
+                            <option value="gu">Gujarati</option>
+                        </select>
+                    </li>
                 </ul>
             </nav>
         </div>
@@ -91,8 +103,8 @@
     <main class="chatbot-page-bg">
         <div class="container">
             <div class="chatbot-page-header">
-                <h1>Clean India Bot</h1>
-                <p>Have questions about waste? Ask our intelligent bot!</p>
+                <h1 data-i18n="chatbot_page_title">Clean India Bot</h1>
+                <p data-i18n="chatbot_page_desc">Have questions about waste? Ask our intelligent bot!</p>
             </div>
 
             <!-- Dedicated Container for Chatbot -->
@@ -162,7 +174,9 @@
 
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="js/chatbot.js"></script>
+    <script src="js/chatbot.js"></script>
     <script src="js/script.js"></script>
+    <script src="js/lang.js"></script>
 </body>
 
 </html>

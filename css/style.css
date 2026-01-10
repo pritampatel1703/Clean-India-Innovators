@@ -47,8 +47,8 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 100px;
-    /* Increased space significantly */
+    gap: 40px;
+    /* Reduced space to fit content */
 }
 
 /* Logo */
@@ -61,7 +61,7 @@ header {
 /* Nav Link Wrapper */
 .nav-links {
     display: flex;
-    gap: 45px;
+    gap: 25px;
     align-items: center;
 }
 
