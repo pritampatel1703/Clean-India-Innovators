@@ -214,7 +214,6 @@
                 </div>
             </div>
         </div>
-        </div>
 
         <!-- Video Section (Initially Hidden) -->
         <div id="video-section" style="display: none;">
@@ -347,10 +346,10 @@
                 // Activate selected
                 if (type === 'text') {
                     btnText.classList.add('active');
-                    sections.text.style.display = 'grid'; // Maintain grid layout
+                    sections.text.style.display = 'block'; // Block layout for flip cards
                 } else {
                     btnVideo.classList.add('active');
-                    sections.video.style.display = 'grid'; // Maintain grid layout
+                    sections.video.style.display = 'grid'; // Grid layout for video cards
                 }
             }
 

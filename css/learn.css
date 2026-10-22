@@ -46,13 +46,16 @@
 }
 
 /* Section visibility */
-#text-section,
+#text-section {
+    display: block;
+    width: 100%;
+}
+
 #video-section {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
     width: 100%;
-    /* Ensure it takes full width */
 }
 
 .learn-card {
