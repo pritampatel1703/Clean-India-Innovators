@@ -137,12 +137,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzb-APkOcPuBQAp7PBzp5NqE2vawTXTj5Xqf0TX4oDR7GNZ6JT6jIDOEFDZRV6yqdGEEg/exec";
 
         try {
-            await fetch(SCRIPT_URL, {
+            const response = await fetch(SCRIPT_URL, {
                 method: "POST",
                 body: JSON.stringify(formData),
-                // mode: "no-cors" // Google Apps Script often needs this for simple POSTs if CORS headers aren't set
+                mode: "no-cors" // Google Apps Script needs this for cross-origin POSTs
             });
 
+            // no-cors returns an opaque response (type "opaque", status 0) — that's expected and means success
             // Success
             successModal.classList.remove('hidden');
             reportForm.reset();

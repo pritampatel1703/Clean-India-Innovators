@@ -1,0 +1,30 @@
+{
+    "candidates": [
+        {
+            "content": {
+                "parts": [
+                    {
+                        "text": "AI learns patterns from data to make intelligent decisions or predictions."
+                    }
+                ],
+                "role": "model"
+            },
+            "finishReason": "STOP",
+            "index": 0
+        }
+    ],
+    "usageMetadata": {
+        "promptTokenCount": 8,
+        "candidatesTokenCount": 12,
+        "totalTokenCount": 1163,
+        "promptTokensDetails": [
+            {
+                "modality": "TEXT",
+                "tokenCount": 8
+            }
+        ],
+        "thoughtsTokenCount": 1143
+    },
+    "modelVersion": "gemini-2.5-flash",
+    "responseId": "kC1eabOrCdnxnsEP_oWEmQo"
+}
