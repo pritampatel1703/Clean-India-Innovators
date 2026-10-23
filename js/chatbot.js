@@ -439,8 +439,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     async function callGeminiAPI(userText) {
+        if (typeof CONFIG === 'undefined' || !CONFIG.GEMINI_API_KEY) {
+            console.error("CONFIG.GEMINI_API_KEY is not defined. Make sure js/config.js is loaded before chatbot.js");
+            return null;
+        }
         const API_KEY = CONFIG.GEMINI_API_KEY;
-        const API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent";
+        const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${API_KEY}`;
 
         try {
             // Construct the contents array from history
@@ -458,13 +462,23 @@ document.addEventListener('DOMContentLoaded', () => {
             const response = await fetch(API_URL, {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json",
-                    "x-goog-api-key": API_KEY
+                    "Content-Type": "application/json"
                 },
                 body: JSON.stringify({ contents: contents })
             });
 
             const data = await response.json();
+
+            if (!response.ok) {
+                console.error("Gemini API error:", response.status, data);
+                return null;
+            }
+
+            if (!data.candidates || !data.candidates[0] || !data.candidates[0].content) {
+                console.error("Unexpected API response:", data);
+                return null;
+            }
+
             const botResponse = data.candidates[0].content.parts[0].text;
 
             // Update History on Success
@@ -475,7 +489,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         } catch (error) {
             console.error("API Error:", error);
-            return "Failed to get response.";
+            return null;
         }
     }
 
