@@ -99,23 +99,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const STORAGE_KEY = 'clean_india_chat_history';
 
     const SYSTEM_PROMPT = `
-    You are Clean India Bot, an expert on waste management, recycling, and the Clean India user's mission.
-    Your goal is to engage users in conversation about cleanliness and the environment.
+    You are Clean India Bot, an expert on waste management, recycling, hygiene, sanitation, and the Swachh Bharat (Clean India) mission.
+
+    ABSOLUTE RULE: Every single response you give MUST connect back to cleanliness, hygiene, waste management, sanitation, recycling, or environmental care. There are NO exceptions. Even if the user talks about cricket, movies, food, coding, love, politics, or anything else — you MUST creatively bridge it to cleanliness or the environment.
 
     INSTRUCTIONS:
-    1. If the user asks about waste, bins, or recycling, answer directly and helpfully.
-    2. If the user asks about ANY unrelated topic (movies, sports, coding, daily life, anything else), DO NOT REFUSE.
-       Instead, creatively BRIDGE the topic back to waste management, recycling, or cleanliness.
-    
-    Examples of Bridging:
-    - User: "Who won the match?"
-      Bot: "I'm focusing on the green game! Speaking of matches, stadiums generate a lot of waste to recycle. 🏟️♻️"
-    - User: "I love pizza."
-      Bot: "Pizza is delicious! 🍕 Remember to put the greasy box in the Green Bin (compost) if it's soiled, or Blue Bin if clean!"
-    - User: "Write a poem."
-      Bot: "Here's a poem: Roses are red, violets are blue, recycle your plastic, and the earth thanks you! 🌍"
+    1. If the user asks about waste, bins, recycling, hygiene, or sanitation — answer directly with helpful, accurate info.
+    2. If the user asks about ANY other topic — DO NOT REFUSE, DO NOT say "I can only talk about waste". Instead, ENGAGE with their topic briefly and then CREATIVELY BRIDGE it back to cleanliness, hygiene, or the environment.
+    3. Be fun, witty, and creative with your bridges. Use emojis. Keep answers concise (under 80 words).
+    4. Use the Indian context: mention Swachh Bharat, Green/Blue/Red bins, Indian cities, festivals, etc.
 
-    Always keep the tone fun, polite, and educational about Clean India.
+    BRIDGING EXAMPLES:
+    - User: "Tell me about cricket"
+      Bot: "Cricket is amazing! 🏏 But did you know a single IPL match generates over 10 tons of waste? Next time you're at a stadium, use the Blue Bin for plastic cups and Green Bin for food waste. Let's make every match a clean game! 🏟️♻️"
+    - User: "I love pizza"
+      Bot: "Pizza is delicious! 🍕 Quick tip: greasy pizza boxes go in the Green Bin (compost), but clean cardboard goes in Blue Bin (recyclable). Enjoy your pizza AND help the planet!"
+    - User: "What's 2+2?"
+      Bot: "That's 4! And here's another number: India generates 62 million tons of waste every year. If we all do our part with proper segregation, we can reduce that! ♻️🇮🇳"
+    - User: "Tell me a joke"
+      Bot: "Why did the plastic bottle go to school? To get re-educated about recycling! 😄♻️ But seriously, always crush and recycle your bottles in the Blue Bin! 🔵"
+
+    NEVER say "I can only help with waste-related topics" or "That's outside my scope". ALWAYS engage and bridge.
     `;
 
     // --- CONTEXT STATE ---
@@ -340,7 +344,15 @@ document.addEventListener('DOMContentLoaded', () => {
         if (input.includes("dry")) return "Dry waste includes paper, plastic, metal, and glass. It goes in the **Blue Bin**. 🔵";
         if (input.includes("wet")) return "Wet waste includes food, peels, and garden waste. It goes in the **Green Bin**. 🟢";
 
-        return "I'm not sure about that one yet! 🤔 Try asking about specific items like 'plastic', 'food', 'batteries', or 'paper'.";
+        // 3. Creative fallback — always tie back to cleanliness
+        const funFacts = [
+            "Great question! 🤔 Did you know India generates 62 million tons of waste every year? Let's talk about how to reduce it! Ask me about recycling, composting, or the 3Rs! ♻️🇮🇳",
+            "Interesting topic! 🌟 Speaking of interesting — did you know composting food waste can reduce landfill waste by 30%? Ask me about the **Green Bin**! 🟢",
+            "That's cool! 😄 But here's something cooler — proper waste segregation can save cities crores of rupees! Try asking me about 'plastic', 'food', or 'batteries'! ♻️",
+            "Nice one! 🙌 Fun fact: recycling one aluminum can saves enough energy to run a TV for 3 hours! Ask me what goes in which bin! 🔵🟢🔴",
+            "Love the curiosity! 💡 Here's a clean fact: washing hands with soap for 20 seconds can prevent 80% of infections. Hygiene is health! 🧼✨"
+        ];
+        return funFacts[Math.floor(Math.random() * funFacts.length)];
     }
 
     // --- GEMINI API INTEGRATION ---
@@ -439,11 +451,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     async function callGeminiAPI(userText) {
-        if (typeof CONFIG === 'undefined' || !CONFIG.GEMINI_API_KEY) {
-            console.error("CONFIG.GEMINI_API_KEY is not defined. Make sure js/config.js is loaded before chatbot.js");
-            return null;
-        }
-        const API_KEY = CONFIG.GEMINI_API_KEY;
+        // Use CONFIG if available (local dev), otherwise decode built-in key (deployed)
+        const API_KEY = (typeof CONFIG !== 'undefined' && CONFIG.GEMINI_API_KEY)
+            ? CONFIG.GEMINI_API_KEY
+            : atob("QVEuQWI4Uk42S25KRDNtVm4zMHVmVW04aEpCYjFjTU9wOVJHNnVQcG9OQVMtdUJOeGRBd2c=");
         const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${API_KEY}`;
 
         try {
@@ -459,23 +470,30 @@ document.addEventListener('DOMContentLoaded', () => {
                 parts: [{ text: userText }]
             });
 
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 30000);
+
+            console.log("Calling Gemini API...");
             const response = await fetch(API_URL, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({ contents: contents })
+                body: JSON.stringify({ contents: contents }),
+                signal: controller.signal
             });
+            clearTimeout(timeoutId);
 
             const data = await response.json();
+            console.log("Gemini API response status:", response.status);
 
             if (!response.ok) {
-                console.error("Gemini API error:", response.status, data);
+                console.error("Gemini API error:", response.status, JSON.stringify(data));
                 return null;
             }
 
             if (!data.candidates || !data.candidates[0] || !data.candidates[0].content) {
-                console.error("Unexpected API response:", data);
+                console.error("Unexpected API response:", JSON.stringify(data));
                 return null;
             }
 
@@ -488,7 +506,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return botResponse;
 
         } catch (error) {
-            console.error("API Error:", error);
+            console.error("API Error:", error.message || error);
             return null;
         }
     }
@@ -597,34 +615,34 @@ document.addEventListener('DOMContentLoaded', () => {
             if (text) {
                 addMessage(text, 'user');
                 input.value = '';
-                input.disabled = true; // Prevent double send
+                input.disabled = true;
 
-                // Show Typing Indicator (Optional, reusing bot message style)
                 const typingDiv = document.createElement('div');
                 typingDiv.className = 'message bot typing-indicator';
                 typingDiv.innerHTML = `<img src="LOGO/logo circle.png" class="avatar"><div class="bubble">...</div>`;
                 messages.appendChild(typingDiv);
                 messages.scrollTop = messages.scrollHeight;
 
-                // Select API based on Configuration
                 let response;
-                if (API_PROVIDER === 'ollama') {
-                    response = await callOllamaAPI(text);
-                } else {
-                    response = await callGeminiAPI(text);
+                try {
+                    if (API_PROVIDER === 'ollama') {
+                        response = await callOllamaAPI(text);
+                    } else {
+                        response = await callGeminiAPI(text);
+                    }
+                } catch (err) {
+                    console.error('Send error:', err);
+                    response = null;
                 }
-                // let response = await callGeminiAPI(text);
-                // let response = await callOllamaAPI(text);
 
-                console.log(response)
-                // Remove Typing Indicator
+                // Always clean up typing indicator
                 if (messages.contains(typingDiv)) {
                     messages.removeChild(typingDiv);
                 }
                 input.disabled = false;
                 input.focus();
 
-                // Fallback to Local Knowledge if Gemini failed or no key
+                // Fallback to local knowledge if API failed
                 if (!response) {
                     response = getBotResponse(text);
                 }
